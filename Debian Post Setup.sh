@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 echo "Installing Kde-plasma minimal,fonts and Brave-browser dependencies"
-sudo apt -y install kde-plasma-desktop plasma-nm apt install fonts-terminus neofetch apt-transport-https curl wget git gdebi-core
+sudo apt -y install kde-plasma-desktop plasma-nm apt install fonts-terminus neofetch apt-transport-https curl wget git gdebi-core python3-pip
 echo "Importing keyring"
 sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
 echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
