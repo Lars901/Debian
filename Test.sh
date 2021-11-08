@@ -2,18 +2,19 @@
 
 PKGS=(
 'mesa' # Essential Xorg First
-'xorg'
-'xorg-server'
-'xorg-apps'
+#'xorg'
+#'xorg-server'
+#'xorg-apps'
 'xorg-drivers'
-'xorg-xkill'
-'xorg-xinit'
+#'xorg-xkill'
+#'xorg-xinit'
 'xterm'
 'plasma-desktop' # KDE Load second
 'alsa-plugins' # audio plugins
 'alsa-utils' # audio utils
 'ark' # compression
-'audiocd-kio' 
+'apt-transport-https' #Dependecy for Brave
+'kio-audiocd' 
 'autoconf' # build
 'automake' # build
 'base'
@@ -30,27 +31,27 @@ PKGS=(
 'btrfs-progs'
 'celluloid' # video players
 'cmatrix'
-'code' # Visual Studio code
-'cronie'
+#'code' # Visual Studio code
 'cups'
+'curl'
 'dialog'
 'discover'
 'dolphin'
 'dosfstools'
-'efibootmgr' # EFI boot
 'egl-wayland'
 'exfat-utils'
+'fonts-terminus'
 'flex'
 'fuse2'
 'fuse3'
 'fuseiso'
 'gamemode'
+'gdebi-core'
 'gcc'
 'gimp' # Photo editing
 'git'
 'gparted' # partition management
 'gptfdisk'
-'grub'
 'grub-customizer'
 'gst-libav'
 'gst-plugins-good'
@@ -88,25 +89,19 @@ PKGS=(
 'oxygen'
 'p7zip'
 'patch'
-'picom'
 'pkgconf'
 'plasma-nm'
-'powerline-fonts'
 'print-manager'
 'pulseaudio'
 'pulseaudio-alsa'
 'pulseaudio-bluetooth'
-'python-pip'
+'python3-pip'
 'qemu'
 'rsync'
 'sddm'
 'sddm-kcm'
 'snapper'
-'spectacle'
 'steam'
-'sudo'
-'swtpm'
-'synergy'
 'systemsettings'
 'terminus-font'
 'traceroute'
@@ -117,13 +112,10 @@ PKGS=(
 'virt-manager'
 'virt-viewer'
 'wget'
-'which'
-'wine-gecko'
-'wine-mono'
 'winetricks'
 'xdg-desktop-portal-kde'
 'xdg-user-dirs'
-'zeroconf-ioslave'
+'kde-zeroconf'
 'zip'
 'zsh'
 'zsh-syntax-highlighting'
