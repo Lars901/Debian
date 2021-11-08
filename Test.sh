@@ -74,7 +74,7 @@ PKGS=(
 'milou'
 'nano'
 'neofetch'
-'networkmanager'
+#'networkmanager'
 'ntfs-3g'
 'ntp'
 'okular'
