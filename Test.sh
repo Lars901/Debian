@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
 PKGS=(
-'mesa' # Essential Xorg First
+#'mesa' # Essential Xorg First
 #'xorg'
 #'xorg-server'
 #'xorg-apps'
-'xorg-drivers'
+#'xorg-drivers'
 #'xorg-xkill'
 #'xorg-xinit'
 'xterm'
@@ -19,7 +19,8 @@ PKGS=(
 'automake' # build
 'base'
 'bash-completion'
-'bind'
+'bind9'
+'bind9utils'
 'binutils'
 'bison'
 'bluedevil'
@@ -104,6 +105,7 @@ PKGS=(
 'steam'
 'systemsettings'
 'terminus-font'
+'telegram-desktop'
 'traceroute'
 'ufw'
 'unrar'
