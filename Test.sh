@@ -81,7 +81,7 @@ PKGS=(
 'netcat-openbsd'
 #'openssh-client'
 'os-prober'
-'oxygen'
+#'oxygen'
 'p7zip'
 'patch'
 'pkgconf'
