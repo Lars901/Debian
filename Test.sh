@@ -54,8 +54,9 @@ PKGS=(
 'grub-customizer'
 'haveged'
 'htop'
-'iptables-nft'
-'jdk-openjdk' # Java 17
+'nftables'
+'openjdk-17-jdk' # Java 17
+'openjdk-17-jre' #Java 17 jre
 'kate'
 'kvantum-qt5'
 'kde-gtk-config'
