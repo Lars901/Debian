@@ -42,7 +42,7 @@ PKGS=(
 'exfat-utils'
 'fonts-terminus'
 'flex'
-'fuse'
+'fuse3'
 'fuseiso'
 'gamemode'
 'gdebi-core'
@@ -50,11 +50,8 @@ PKGS=(
 'gimp' # Photo editing
 'git'
 'gparted' # partition management
-'gptfdisk'
+'gdisk'
 'grub-customizer'
-'gst-libav'
-'gst-plugins-good'
-'gst-plugins-ugly'
 'haveged'
 'htop'
 'iptables-nft'
