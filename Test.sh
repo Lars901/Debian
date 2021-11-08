@@ -38,7 +38,7 @@ PKGS=(
 'discover'
 'dolphin'
 'dosfstools'
-'egl-wayland'
+'libnvidia-egl-wayland1'
 'exfat-utils'
 'fonts-terminus'
 'flex'
