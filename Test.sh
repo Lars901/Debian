@@ -58,8 +58,7 @@ PKGS=(
 'openjdk-17-jdk' # Java 17
 'openjdk-17-jre' #Java 17 jre
 'kate'
-'kvantum-qt5'
-'kde-gtk-config'
+'qt5-style-kvantum'
 'konsole'
 'layer-shell-qt'
 'libnewt'
