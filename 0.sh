@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 sudo nano /etc/apt/sources.list
 sudo apt -y update && upgrade 
-sudo apt -y install terminus-font
+sudo apt -y install fonts-terminuscd ..
 sudo dpkg-reconfigure console-setup
 
 # determine processor type and install microcode
@@ -10,13 +10,13 @@ proc_type=$(lscpu | awk '/Vendor ID:/ {print $3}')
 case "$proc_type" in
 	GenuineIntel)
 		print "Installing Intel microcode"
-		sudo apt -y install intel-ucode
+		sudo apt -y install intel-microcode
 		proc_ucode=intel-ucode.img
 		;;
 	AuthenticAMD)
 		print "Installing AMD microcode"
-		sudo apt -y install amd-ucode
-		proc_ucode=amd-ucode.img
+		sudo apt -y install amd64-microcode
+		proc_amd64-ucode.img
 		;;
 esac	
 
