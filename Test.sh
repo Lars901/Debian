@@ -26,7 +26,7 @@ PKGS=(
 'bluedevil'
 'bluez'
 'breeze'
-'breeze-gtk'
+'breeze-gtk-theme'
 'bridge-utils'
 'btrfs-progs'
 'celluloid' # video players
