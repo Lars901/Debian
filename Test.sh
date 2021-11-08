@@ -98,7 +98,7 @@ PKGS=(
 'snapper'
 #'steam'
 'systemsettings'
-'terminus-font'
+'fonts-terminus'
 'telegram-desktop'
 'traceroute'
 'ufw'
