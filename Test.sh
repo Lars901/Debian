@@ -25,7 +25,6 @@ PKGS=(
 'bison'
 'bluedevil'
 'bluez'
-'bluez-libs'
 'breeze'
 'breeze-gtk'
 'bridge-utils'
