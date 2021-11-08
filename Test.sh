@@ -10,7 +10,7 @@ PKGS=(
 #'xorg-xinit'
 'xterm'
 'plasma-desktop' # KDE Load second
-'alsa-plugins' # audio plugins
+#'alsa-plugins' # audio plugins
 'alsa-utils' # audio utils
 'ark' # compression
 'apt-transport-https' #Dependecy for Brave
