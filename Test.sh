@@ -61,7 +61,7 @@ PKGS=(
 'qt5-style-kvantum'
 'konsole'
 'layer-shell-qt'
-'libnewt'
+'libnewt-dev'
 'libtool'
 #'linux'
 #'linux-firmware'
