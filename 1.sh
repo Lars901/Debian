@@ -2,12 +2,7 @@
 
 PKGS=(
 #'mesa' # Essential Xorg First
-#'xorg'
-#'xorg-server'
-#'xorg-apps'
-#'xorg-drivers'
-#'xorg-xkill'
-#'xorg-xinit'
+'xorg'
 'xterm'
 'plasma-desktop' # KDE Load second
 #'alsa-plugins' # audio plugins
