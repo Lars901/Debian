@@ -48,7 +48,7 @@ packages=(
   # Theming
   breeze-gtk-theme
   kde-config-gtk-style
-  kde-config-gtk-style-previwe
+  kde-config-gtk-style-preview
   sddm-theme-breeze
 
   # Libs and Plugins
