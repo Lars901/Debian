@@ -2,7 +2,7 @@
 
 set -x;
 
-apt-get update -yq
+sudo apt-get update -yq
 
 packages=(
   # can I haz sandwich?
@@ -68,4 +68,4 @@ arguments=(
   --no-install-recommends
 )
 
-apt-get install "${arguments[@]}" "${packages[@]}"
+sudo apt-get install "${arguments[@]}" "${packages[@]}"
