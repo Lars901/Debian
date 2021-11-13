@@ -4,7 +4,7 @@ PKGS=(
 #'mesa' # Essential Xorg First
 'xorg'
 'xterm'
-'plasma-desktop' # KDE Load second
+'kde-plasma-desktop' # KDE Load second
 #'alsa-plugins' # audio plugins
 'alsa-utils' # audio utils
 'ark' # compression

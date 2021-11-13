@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 sudo nano /etc/apt/sources.list
-sudo apt -y update && upgrade 
+sudo apt -y update
+sudo apt -y upgrade
 sudo apt -y install fonts-terminuscd ..
 sudo dpkg-reconfigure console-setup
 
