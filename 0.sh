@@ -9,12 +9,12 @@ sudo dpkg-reconfigure console-setup
 proc_type=$(lscpu | awk '/Vendor ID:/ {print $3}')
 case "$proc_type" in
 	GenuineIntel)
-		print "Installing Intel microcode"
+		echo "Installing Intel microcode"
 		sudo apt -y install intel-microcode
 		proc_ucode=intel-ucode.img
 		;;
 	AuthenticAMD)
-		print "Installing AMD microcode"
+		echo "Installing AMD microcode"
 		sudo apt -y install amd64-microcode
 		proc_amd64-ucode.img
 		;;
