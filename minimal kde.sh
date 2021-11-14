@@ -23,13 +23,23 @@ packages=(
   kde-spectacle
   kmenuedit
   konsole
+  ktorrent
   neofetch
   okular
   qml-module-org-kde-newstuff
   systemsettings
-
+  virt-manager
+  virt-viewer
+  print-manager
+  dialog
+  telegram-desktop
+ # Build
+  gcc
+  curl
   # Services
-  alsa-util
+  alsa-utils
+  cups
+  usbutils
   bluedevil
   khotkeys
   kscreen
@@ -39,6 +49,7 @@ packages=(
   powerdevil
   polkit-kde-agent-1
   upower
+  wget
 
   # DE
   kwin-x11
@@ -46,6 +57,7 @@ packages=(
   plasma-workspace
   sddm
   xorg
+  dxvk
 
   # Theming
   breeze-gtk-theme
@@ -60,8 +72,13 @@ packages=(
   plasma-runners-addons
   pulseaudio-module-bluetooth
   apt-transport-https
+  python3-pip
+  kde-zeroconf
   # Ark tooling
   unzip
+
+  #Fonts
+  fonts-terminus
 )
 
 arguments=(

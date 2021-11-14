@@ -109,7 +109,7 @@ PKGS=(
 'xdg-user-dirs'
 'kde-zeroconf'
 'ktorrent'
-'kde-baseapps-bin'
+'kde-baseapps'
 'zip'
 #'zsh'
 #'zsh-syntax-highlighting'
