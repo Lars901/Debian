@@ -16,6 +16,7 @@ packages=(
 
   # Apps
   ark
+  btrfs-progs
   dolphin
   gwenview
   kate
@@ -28,6 +29,7 @@ packages=(
   systemsettings
 
   # Services
+  alsa-util
   bluedevil
   khotkeys
   kscreen
@@ -57,7 +59,7 @@ packages=(
   plasma-browser-integration
   plasma-runners-addons
   pulseaudio-module-bluetooth
-
+  apt-transport-https
   # Ark tooling
   unzip
 )

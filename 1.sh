@@ -70,7 +70,7 @@ PKGS=(
 'milou'
 'nano'
 'neofetch'
-'network-manager'
+'networkmanager-qt'
 'nm-tray'
 'ntfs-3g'
 'ntp'
