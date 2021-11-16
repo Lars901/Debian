@@ -87,6 +87,8 @@ packages=(
 
   #Fonts
   fonts-terminus
+  #Firmware
+  firmware-misc-nonfree 
 )
 
 arguments=(
