@@ -38,6 +38,9 @@ packages=(
   curl
   # Services
   alsa-utils
+  libvulkan1
+  libvulkan-dev
+  vulkan-tools
   cups
   usbutils
   bluedevil
@@ -57,7 +60,7 @@ packages=(
   plasma-workspace
   sddm
   xorg
-  dxvk
+  
 
   # Theming
   breeze-gtk-theme
