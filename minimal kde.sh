@@ -36,8 +36,14 @@ packages=(
  # Build
   gcc
   curl
+  wget
+  build-essential
+  dkms
+  linux-headers-$(uname -r)
   # Services
   alsa-utils
+  dhcpcd-dbus
+  dhcpcd5
   libvulkan1
   libvulkan-dev
   vulkan-tools
@@ -52,7 +58,6 @@ packages=(
   powerdevil
   polkit-kde-agent-1
   upower
-  wget
 
   # DE
   kwin-x11
@@ -91,3 +96,4 @@ arguments=(
 )
 
 sudo apt-get install "${arguments[@]}" "${packages[@]}"
+systemctl disable dhcpcd
