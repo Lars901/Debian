@@ -513,7 +513,6 @@ gir1.2-secret-1:amd64
 gir1.2-wnck-3.0:amd64
 git
 git-man
-github-desktop
 glib-networking:amd64
 glib-networking-common
 glib-networking-services
