@@ -24,6 +24,7 @@ packages=(
   kmenuedit
   konsole
   ktorrent
+  modemmanager
   neofetch
   okular
   qml-module-org-kde-newstuff
