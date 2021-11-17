@@ -28,6 +28,7 @@ packages=(
   okular
   qml-module-org-kde-newstuff
   systemsettings
+  sieveeditor
   virt-manager
   virt-viewer
   print-manager
@@ -41,13 +42,16 @@ packages=(
   dkms
   linux-headers-$(uname -r)
   # Services
+  avahi-daemon
   alsa-utils
+  dbus 
   dhcpcd-dbus
   dhcpcd5
   libvulkan1
   libvulkan-dev
   vulkan-tools
   cups
+  samba
   usbutils
   bluedevil
   khotkeys
@@ -74,6 +78,7 @@ packages=(
   sddm-theme-breeze
 
   # Libs and Plugins
+  libavahi-common3
   libqtspell-qt5-0
   qtvirtualkeyboard-plugin
   plasma-browser-integration
@@ -98,4 +103,4 @@ arguments=(
 )
 
 sudo apt-get install "${arguments[@]}" "${packages[@]}"
-systemctl disable dhcpcd
+sudo systemctl disable dhcpcd
