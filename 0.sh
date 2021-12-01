@@ -4,7 +4,7 @@ sudo apt -y update
 sudo apt -y upgrade
 sudo apt -y install fonts-terminuscd ..
 sudo dpkg-reconfigure console-setup
-
+sudo apt-install libplasma-geolocation-interface5 plasma-desktop plasma-nm sddm konsole dolphin
 # determine processor type and install microcode
 # 
 proc_type=$(lscpu | awk '/Vendor ID:/ {print $3}')
