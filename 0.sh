@@ -12,12 +12,10 @@ case "$proc_type" in
 	GenuineIntel)
 		echo "Installing Intel microcode"
 		sudo apt -y install intel-microcode
-		proc_ucode=intel-ucode.img
 		;;
 	AuthenticAMD)
 		echo "Installing AMD microcode"
 		sudo apt -y install amd64-microcode
-		proc_amd64-ucode.img
 		;;
 esac	
 

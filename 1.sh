@@ -12,7 +12,7 @@ PKGS=(
 'kio-audiocd' 
 'autoconf' # build
 'automake' # build
-'base'
+#'base'
 'bash-completion'
 'bind9'
 'bind9utils'
@@ -45,14 +45,14 @@ PKGS=(
 'gcc'
 'gimp' # Photo editing
 'git'
-'gparted' # partition management
+'partitionmanager ' # partition management
 'gdisk'
 'grub-customizer'
 'haveged'
 'htop'
 'nftables'
-'openjdk-17-jdk' # Java 17
-'openjdk-17-jre' #Java 17 jre
+#'openjdk-17-jdk' # Java 17
+#'openjdk-17-jre' #Java 17 jre
 'kate'
 'qt5-style-kvantum'
 'konsole'
@@ -96,6 +96,7 @@ PKGS=(
 #'steam'
 'systemsettings'
 'fonts-terminus'
+'flameshot'
 'telegram-desktop'
 'traceroute'
 'ufw'
