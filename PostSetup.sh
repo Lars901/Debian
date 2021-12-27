@@ -46,7 +46,6 @@ PKGS=(
 'zip'
 'unzip'
 )
-
 for PKG in "${PKGS[@]}"; do
     echo "INSTALLING: ${PKG}"
     sudo apt -y install "$PKG"
