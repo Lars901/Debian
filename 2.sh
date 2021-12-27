@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+sudo apt update
 sudo apt install build-essential dkms linux-headers-$(uname -r)
 apt-transport-https
 echo "Importing keyring"
@@ -16,9 +17,11 @@ wget -qO - https://packagecloud.io/shiftkey/desktop/gpgkey | sudo tee /etc/apt/t
 sudo sh -c 'echo "deb [arch=amd64] https://packagecloud.io/shiftkey/desktop/any/ any main" > /etc/apt/sources.list.d/packagecloud-shiftkey-desktop.list'
 sudo apt-get update
 sudo apt install github-desktop
-curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | gpg --dearmor | sudo tee /usr/share/keyrings/repository-spotify-com-keyring.gpg >/dev/null
-echo deb [signed-by=/usr/share/keyrings/repository-spotify-com-keyring.gpg] http://repository.spotify.com stable non-free | sudo tee /etc/apt/sources.list.d/spotify.list
 sudo apt update
+curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | sudo apt-key add -
+echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
+sudo apt update
+sudo apt install spotify-client
 sudo dpkg --add-architecture i386
 sudo apt update
 sudo apt install steam 
