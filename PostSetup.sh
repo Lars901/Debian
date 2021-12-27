@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 # Change Debian to SID Branch
-cp /etc/apt/sources.list /etc/apt/sources.list.bak
-cp sources.list /etc/apt/sources.list 
+sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak
+sudo cp sources.list /etc/apt/sources.list 
 
 # Graphics Drivers find and install
 if lspci | grep -E "NVIDIA|GeForce"; then
