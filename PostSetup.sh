@@ -44,7 +44,8 @@ PKGS=(
 'wget'
 'ktorrent'
 'zip'
-'unzip' 
+'unzip'
+)
 
 for PKG in "${PKGS[@]}"; do
     echo "INSTALLING: ${PKG}"
