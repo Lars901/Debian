@@ -72,7 +72,7 @@ PKGS=(
 #'oxygen'
 'p7zip'
 'patch'
-'pkgconf'
+'pkgconf' 
 'print-manager'
 #'pulseaudio'
 #'pulseaudio-alsa'
