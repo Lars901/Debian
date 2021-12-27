@@ -1,0 +1,2 @@
+deb http://ftp.uio.no/debian/ sid main non-free contrib
+deb-src http://ftp.uio.no/debian/ sid main non-free contrib
