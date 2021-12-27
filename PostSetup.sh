@@ -13,39 +13,96 @@ elif lspci | grep -E "Radeon"; then
 elif lspci | grep -E "Integrated Graphics Controller"; then
     sudo apt -y install libva-intel-driver libvdpau-va-gl lib32-vulkan-intel vulkan-intel libva-intel-driver libva-utils --needed --noconfirm
 fi
-
 PKGS=(
+#'mesa' # Essential Xorg First
+#'alsa-plugins' # audio plugins
+'alsa-utils' # audio utils
+'ark' # compression
 'apt-transport-https' #Dependecy for Brave
+'kio-audiocd' 
 'autoconf' # build
 'automake' # build
-'make' #build
+'bash-completion'
+'binutils'
+'bison'
 'bluedevil'
 'bluez'
+'breeze'
 'btrfs-progs'
 'celluloid' # video players
-'dosfstools'
-'vulkan-tools
-'mesa-vulkan-drivers'
-#'linux-firmware'
-#'linux-headers'
-'celluloid' # video players
+#'code' # Visual Studio code
 'cups'
 'curl'
+'dialog'
+'dosfstools'
+#'dxvk'
+#'libnvidia-egl-wayland1'
+'exfat-utils'
 'fonts-terminus'
+'flex'
+'fuse3'
+'fuseiso'
+'gamemode'
+'gdebi-core'
 'gcc'
+'gdisk'
+'grub-customizer'
+'haveged'
+'htop'
+'nftables'
+#'openjdk-17-jdk' # Java 17
+#'openjdk-17-jre' #Java 17 jre
+'qt5-style-kvantum'
+'libnewt-dev'
+'libtool'
+'lsof'
+'lutris'
+'lzop'
+'m4'
+'make'
+'milou'
 'nano'
 'neofetch'
+'ntfs-3g'
+'ntp'
+'okular'
+'netcat-openbsd'
+#'openssh-client'
+'os-prober'
+#'oxygen'
+'p7zip'
+'patch'
+'pkgconf'
 'print-manager'
+#'pulseaudio'
+#'pulseaudio-alsa'
+#'pulseaudio-bluetooth'
 'python3-pip'
 'qemu'
+'rsync'
+'snapper'
+#'steam'
+'systemsettings'
+'fonts-terminus'
 'flameshot'
 'telegram-desktop'
-'usbutils'
-'wget'
-'ktorrent'
-'zip'
+'traceroute'
+'ufw'
+'unrar'
 'unzip'
+'usbutils'
+'virt-manager'
+'virt-viewer'
+'wget'
+'kde-zeroconf'
+'ktorrent'
+'kde-baseapps'
+'zip'
+#'zsh'
+#'zsh-syntax-highlighting'
+#'zsh-autosuggestions'
 )
+
 for PKG in "${PKGS[@]}"; do
     echo "INSTALLING: ${PKG}"
     sudo apt -y install "$PKG"
