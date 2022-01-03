@@ -3,6 +3,7 @@
 # Change Debian to SID Branch
 sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak
 sudo cp sources.list /etc/apt/sources.list 
+sudo apt update
 
 # Graphics Drivers find and install
 if lspci | grep -E "NVIDIA|GeForce"; then
@@ -91,6 +92,7 @@ PKGS=(
 'unrar'
 'unzip'
 'usbutils'
+'vulkan-tools'
 'virt-manager'
 'virt-viewer'
 'wget'
@@ -107,3 +109,5 @@ for PKG in "${PKGS[@]}"; do
     echo "INSTALLING: ${PKG}"
     sudo apt -y install "$PKG"
 done
+
+sudo dpkg-reconfigure console-setup
