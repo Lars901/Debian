@@ -79,7 +79,13 @@ PKGS=(
 #'pulseaudio-alsa'
 #'pulseaudio-bluetooth'
 'python3-pip'
-'qemu'
+'qemu-kvm'
+'libvirt-clients'
+'libvirt-daemon-system'
+'bridge-utils'
+'virtinst'
+'libvirt-daemon'
+'virt-manager'
 'rsync'
 'snapper'
 #'steam'
@@ -111,3 +117,6 @@ for PKG in "${PKGS[@]}"; do
 done
 
 sudo dpkg-reconfigure console-setup
+sudo systemctl status libvirtd.service
+sudo adduser larsove libvirt
+sudo adduser larsove libvirt-qemu
