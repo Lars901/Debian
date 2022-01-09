@@ -80,12 +80,12 @@ PKGS=(
 #'pulseaudio-bluetooth'
 'python3-pip'
 'qemu-kvm'
-'libvirt-clients'
-'libvirt-daemon-system'
-'bridge-utils'
-'virtinst'
-'libvirt-daemon'
-'virt-manager'
+'libvirt-clients' #Dependecy for quemu
+'libvirt-daemon-system' #Dependecy for quemu
+'bridge-utils' #Dependecy for quemu
+'virtinst' #Dependecy for virt-manager
+'libvirt-daemon' #Dependecy for virt-manager
+'virt-manager' 
 'rsync'
 'snapper'
 #'steam'
