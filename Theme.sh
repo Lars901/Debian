@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-/home/$USERNAME="$HOME"
+/home/larsove="$HOME"
 
 # Download Nordic Theme
 cd /usr/share/themes/
