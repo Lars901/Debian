@@ -16,7 +16,7 @@ fc-cache -vf
 sudo apt install ttf-mscorefonts-installer
 
 # Layan Cursors
-cd "$HOME/build"
+<<EOF cd "$HOME/build" EOF
 git clone https://github.com/vinceliuice/Layan-cursors
 cd Layan-cursors
 sudo ./install.sh
