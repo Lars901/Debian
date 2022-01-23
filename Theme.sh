@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
-/home/larsove="$HOME"
+echo "$USER"
+u="$USER"
+echo "User name $u"
 
 # Download Nordic Theme
 cd /usr/share/themes/
@@ -17,7 +19,7 @@ fc-cache -vf
 sudo apt install ttf-mscorefonts-installer
 
 # Layan Cursors
-cd "$HOME/build"
+cd /$u/home
 git clone https://github.com/vinceliuice/Layan-cursors
 cd Layan-cursors
 sudo ./install.sh
