@@ -125,6 +125,6 @@ for PKG in "${PKGS[@]}"; do
 done
 
 sudo dpkg-reconfigure console-setup
-sudo systemctl status libvirtd.service
+#sudo systemctl status libvirtd.service
 sudo adduser larsove libvirt
 sudo adduser larsove libvirt-qemu

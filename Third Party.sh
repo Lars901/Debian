@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 sudo apt update
-sudo apt install build-essential dkms linux-headers-$(uname -r)
+sudo apt install build-essential dkms linux-headers-amd64
 apt-transport-https
 echo "Importing keyring"
 sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg

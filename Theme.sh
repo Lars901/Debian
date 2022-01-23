@@ -20,5 +20,3 @@ cd "$HOME/build"
 git clone https://github.com/vinceliuice/Layan-cursors
 cd Layan-cursors
 sudo ./install.sh
-
-echo "RUN LXAPPEARANCE"
