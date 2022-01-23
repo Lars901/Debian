@@ -5,6 +5,7 @@ cd /usr/share/themes/
 git clone https://github.com/EliverLara/Nordic.git
 
 # Fira Code Nerd Font variant needed
+cd "$HOME/Downloads
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.zip
 unzip FiraCode.zip -d ~/.fonts
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip
