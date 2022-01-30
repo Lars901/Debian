@@ -71,6 +71,7 @@ PKGS=(
 #'openssh-client'
 'os-prober'
 #'oxygen'
+'obs-studio'
 'p7zip'
 'patch'
 'pkgconf' 
