@@ -67,6 +67,7 @@ PKGS=(
 'ntfs-3g'
 'ntp'
 'okular'
+'obs-studio'
 'netcat-openbsd'
 #'openssh-client'
 'os-prober'
