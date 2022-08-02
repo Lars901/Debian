@@ -23,6 +23,7 @@ echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sou
 sudo apt update
 sudo apt install spotify-client
 sudo dpkg --add-architecture i386
+sudo apt update
 sudo apt install steam 
 sudo apt install mesa-vulkan-drivers libglx-mesa0:i386 mesa-vulkan-drivers:i386 libgl1-mesa-dri:i386
 sudo apt install winetricks
