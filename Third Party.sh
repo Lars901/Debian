@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+sudo dpkg --add-architecture i386
 sudo apt update
 sudo apt install build-essential dkms linux-headers-amd64
 apt-transport-https
@@ -22,8 +23,6 @@ curl -sS https://download.spotify.com/debian/pubkey_5E3C45D7B312C643.gpg | sudo 
 echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
 sudo apt update
 sudo apt install spotify-client
-sudo dpkg --add-architecture i386
-sudo apt update
 sudo apt install steam 
 sudo apt install mesa-vulkan-drivers libglx-mesa0:i386 mesa-vulkan-drivers:i386 libgl1-mesa-dri:i386
 sudo apt install winetricks
