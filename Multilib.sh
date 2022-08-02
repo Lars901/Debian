@@ -1,1 +1,1 @@
-sudo dpkg --add-architecture i386
+echo dpkg --add-architecture i386
