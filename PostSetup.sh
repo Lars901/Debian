@@ -128,5 +128,6 @@ done
 
 sudo dpkg-reconfigure console-setup
 #sudo systemctl status libvirtd.service
-sudo adduser larsove libvirt
-sudo adduser larsove libvirt-qemu
+sudo adduser $User libvirt
+sudo adduser $User libvirt-qemu
+sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | sudo sh /dev/stdin
