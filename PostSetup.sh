@@ -108,8 +108,7 @@ done
 
 # Graphics Drivers find and install
 if lspci | grep -E "NVIDIA|GeForce"; then
-    sudo apt -y install nvidia
-	nvidia-xconfig
+    sudo apt -y install nvidia nvidia-xconfig
 elif lspci | grep -E "Radeon"; then
     sudo apt -y install xserver-xorg-video-amdgpu firmware-amd-graphics
 elif lspci | grep -E "Integrated Graphics Controller"; then
@@ -180,20 +179,23 @@ flatpak install flathub org.DolphinEmu.dolphin-emu
 cd "/home/$username"
 wget https://static.emulatorgames.net/static3/roms/gamecube/Legend%20of%20Zelda,%20The%20-%20The%20Wind%20Waker%20(USA).7z
 
+#RPCS3 Emu
+flatpak install flathub net.rpcs3.RPCS3
+cd "$builddir" || exit
+wget http://dus01.ps3.update.playstation.net/update/ps3/image/us/2023_0228_05fe32f5dc8c78acbcd84d36ee7fdc5b/PS3UPDAT.PUP
+
 #Discord
 flatpak install flathub com.discordapp.Discord
+
 #Wallpaper downloader
 flatpak install flathub es.estoes.wallpaperDownloader
 
 #Bible applications
 flatpak install flathub org.xiphos.Xiphos
-#_______________________________________________________________________#
 
-#RPCS3 Emu
-cd "$builddir" || exit
-wget https://github.com/RPCS3/rpcs3-binaries-linux/releases/download/build-7081b89e976ad7f931c926022bd93ddd9778347c/rpcs3-v0.0.27-14845-7081b89e_linux64.AppImage
-wget http://dus01.ps3.update.playstation.net/update/ps3/image/us/2023_0228_05fe32f5dc8c78acbcd84d36ee7fdc5b/PS3UPDAT.PUP
-chmod a+x ./rpcs3-*_linux64.AppImage && ./rpcs3-*_linux64.AppImage
+#Github Desktop 
+flatpak install flathub io.github.shiftey.Desktop
+#_______________________________________________________________________#
 
 sudo dpkg-reconfigure console-setup
 #sudo systemctl status libvirtd.service
@@ -230,15 +232,9 @@ cd /usr/share/themes/
 sudo git clone https://github.com/EliverLara/Nordic.git
 
 sudo dpkg --add-architecture i386
-sudo apt update
-sudo apt install build-essential dkms linux-headers-amd64
-wget -qO - https://packagecloud.io/shiftkey/desktop/gpgkey | sudo tee /etc/apt/trusted.gpg.d/shiftkey-desktop.asc > /dev/null
-sudo sh -c 'echo "deb [arch=amd64] https://packagecloud.io/shiftkey/desktop/any/ any main" > /etc/apt/sources.list.d/packagecloud-shiftkey-desktop.list'
-sudo apt-get update
-sudo apt install github-desktop
-sudo apt install steam 
-sudo apt install mesa-vulkan-drivers libglx-mesa0:i386 mesa-vulkan-drivers:i386 libgl1-mesa-dri:i386
-sudo apt install winetricks
-sudo apt install libxtst6:i386 libxrandr2:i386 libglib2.0-0:i386 libgtk2.0-0:i386 libpulse0:i386 libgdk-pixbuf2.0-0:i386 libcurl4-openssl-dev:i386 libopenal1:i386 libusb-1.0-0:i386 libdbus-glib-1-2:i386 
-sudo apt update
-
+sudo apt update -y
+sudo apt install steam -y
+sudo apt install -y build-essential dkms linux-headers-amd64
+sudo apt install -y mesa-vulkan-drivers libglx-mesa0:i386 mesa-vulkan-drivers:i386 libgl1-mesa-dri:i386
+sudo apt install -y winetricks
+sudo apt install -y libxtst6:i386 libxrandr2:i386 libglib2.0-0:i386 libgtk2.0-0:i386 libpulse0:i386 libgdk-pixbuf2.0-0:i386 libcurl4-openssl-dev:i386 libopenal1:i386 libusb-1.0-0:i386 libdbus-glib-1-2:i386 
