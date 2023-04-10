@@ -116,7 +116,7 @@ elif lspci | grep -E "Integrated Graphics Controller"; then
 fi
 
 #Flatpak Requirements
-sudo apt install plasma-discover-backend-flatpak
+sudo apt install -y plasma-discover-backend-flatpak
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 # Making .config and Moving config files and background to Pictures
