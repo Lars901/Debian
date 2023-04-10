@@ -1,7 +1,4 @@
 #!/usr/bin/env bash
-sudo nano /etc/apt/sources.list
-sudo apt -y update
-sudo apt -y upgrade
 sudo apt -y install fonts-terminuscd ..
 sudo dpkg-reconfigure console-setup
 sudo apt-install libplasma-geolocation-interface5 plasma-desktop plasma-nm sddm konsole dolphin
