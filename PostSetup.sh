@@ -173,28 +173,28 @@ sudo git clone https://github.com/EliverLara/Nordic.git
 #Flatpaks
 
 #Spotify
-flatpak install flathub com.spotify.Client
+flatpak install -y flathub com.spotify.Client
 #Dolphin Emu
-flatpak install flathub org.DolphinEmu.dolphin-emu
+flatpak install -y flathub org.DolphinEmu.dolphin-emu
 cd "/home/$username"
-wget https://static.emulatorgames.net/static3/roms/gamecube/Legend%20of%20Zelda,%20The%20-%20The%20Wind%20Waker%20(USA).7z
+#wget Windwaker tbt
 
 #RPCS3 Emu
-flatpak install flathub net.rpcs3.RPCS3
+flatpak install -y flathub net.rpcs3.RPCS3
 cd "$builddir" || exit
 wget http://dus01.ps3.update.playstation.net/update/ps3/image/us/2023_0228_05fe32f5dc8c78acbcd84d36ee7fdc5b/PS3UPDAT.PUP
 
 #Discord
-flatpak install flathub com.discordapp.Discord
+flatpak install -y flathub com.discordapp.Discord
 
 #Wallpaper downloader
-flatpak install flathub es.estoes.wallpaperDownloader
+flatpak install -y flathub es.estoes.wallpaperDownloader
 
 #Bible applications
-flatpak install flathub org.xiphos.Xiphos
+flatpak install -y flathub org.xiphos.Xiphos
 
 #Github Desktop 
-flatpak install flathub io.github.shiftey.Desktop
+flatpak install -y flathub io.github.shiftey.Desktop
 #_______________________________________________________________________#
 
 sudo dpkg-reconfigure console-setup
@@ -238,3 +238,6 @@ sudo apt install -y build-essential dkms linux-headers-amd64
 sudo apt install -y mesa-vulkan-drivers libglx-mesa0:i386 mesa-vulkan-drivers:i386 libgl1-mesa-dri:i386
 sudo apt install -y winetricks
 sudo apt install -y libxtst6:i386 libxrandr2:i386 libglib2.0-0:i386 libgtk2.0-0:i386 libpulse0:i386 libgdk-pixbuf2.0-0:i386 libcurl4-openssl-dev:i386 libopenal1:i386 libusb-1.0-0:i386 libdbus-glib-1-2:i386 
+sudo apt install -y linux-headers-6.1.0-7-amd64
+sudo apt purge -y firefox-esr
+sudo apt purge -y konqueror
