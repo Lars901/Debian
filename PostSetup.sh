@@ -220,7 +220,6 @@ cd "$builddir"
 wget http://ftp.de.debian.org/debian/pool/contrib/m/msttcorefonts/ttf-mscorefonts-installer_3.6_all.deb
 sudo dpkg -i ttf-mscorefonts-installer_3.6_all.deb
 
-sudo dpkg-reconfigure console-setup
 #sudo systemctl status libvirtd.service
 sudo adduser $User libvirt
 sudo adduser $User libvirt-qemu
@@ -240,3 +239,4 @@ sudo apt install -y libxtst6:i386 libxrandr2:i386 libglib2.0-0:i386 libgtk2.0-0:
 sudo apt install -y linux-headers-6.1.0-7-amd64
 sudo apt purge -y firefox-esr
 sudo apt purge -y konqueror
+update-alternatives --config editor
