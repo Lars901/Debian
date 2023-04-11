@@ -177,7 +177,7 @@ flatpak install -y flathub com.spotify.Client
 #Dolphin Emu
 flatpak install -y flathub org.DolphinEmu.dolphin-emu
 cd "/home/$username"
-#wget Windwaker tbt
+#wget https://downloads.romspedia.com/roms/Legend%20of%20Zelda%2C%20The%20-%20The%20Wind%20Waker%20%28USA%29.7z
 
 #RPCS3 Emu
 flatpak install -y flathub net.rpcs3.RPCS3
