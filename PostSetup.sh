@@ -197,7 +197,6 @@ flatpak install -y flathub org.xiphos.Xiphos
 flatpak install -y flathub io.github.shiftey.Desktop
 #_______________________________________________________________________#
 
-sudo dpkg-reconfigure console-setup
 #sudo systemctl status libvirtd.service
 sudo adduser $User libvirt
 sudo adduser $User libvirt-qemu
