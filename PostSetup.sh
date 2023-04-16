@@ -130,13 +130,15 @@ sudo dpkg -i w64codecs_20071007-dmo2_amd64.deb
 sudo apt install -y plasma-discover-backend-flatpak
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
-# Making .config and Moving config files and background to Pictures
+# Making .config and Moving config files and background to Pictures/Wallpapers
 cd "$builddir" || exit
 mkdir -p "/home/$username/.config"
 mkdir -p "/home/$username/.fonts"
 mkdir -p "/home/$username/Pictures"
+mkdir -p "/home/$username/Wallpapers"
 mkdir -p /usr/share/sddm/themes
-#cp bg.jpg "/home/$username/Pictures/"
+cd /Wallpapers
+cp *.jpg /$HOME/$USER/Pictures/Wallpapers
 chown -R "$username:$username" "/home/$username"
 
 #Nala
@@ -154,7 +156,7 @@ unzip Meslo.zip -d "/home/$username/.fonts"
 mv dotfonts/fontawesome/otfs/*.otf "/home/$username/.fonts/"
 chown "$username:$username" "/home/$username/.fonts/*"
 
-# Reloading Font
+# Reloading Font cache
 fc-cache -vf
 # Removing zip Files
 rm ./FiraCode.zip ./Meslo.zip
