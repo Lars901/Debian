@@ -5,7 +5,7 @@ builddir=$(pwd)
 # Change Debian to SID Branch
 sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak
 sudo cp sources.list /etc/apt/sources.list 
-sudo apt update
+sudo apt update -y
 
 PKGS=(
 'alsa-utils' # audio utils
@@ -34,6 +34,7 @@ PKGS=(
 'gdebi-core'
 'gcc'
 'gdisk'
+'handbrake'
 'haveged'
 'htop'
 'nftables'
@@ -41,8 +42,11 @@ PKGS=(
 #'openjdk-17-jdk' # Java 17
 #'openjdk-17-jre' #Java 17 jre
 'qt5-style-kvantum'
+'libavcodec-extra' # Extra codecs
+'libdvdread8 ' #Enable dvd playback
 'libnewt-dev'
 'libtool'
+'libdvd-pkg'  #Enable dvd playback
 'lsof'
 'lutris'
 'lzop'
@@ -115,6 +119,16 @@ elif lspci | grep -E "Integrated Graphics Controller"; then
     sudo apt -y install libva-intel-driver libvdpau-va-gl lib32-vulkan-intel vulkan-intel libva-intel-driver libva-utils --needed --noconfirm
 fi
 
+#Enable Dvd playback
+sudo dpkg-reconfigure libdvd-pkg
+
+
+#Windows Media Codecs
+wget https://www.deb-multimedia.org/pool/main/d/deb-multimedia-keyring/deb-multimedia-keyring_2016.8.1_all.deb
+sudo dpkg -i deb-multimedia-keyring_2016.8.1_all.deb
+echo "deb http://www.deb-multimedia.org sid main non-free"
+| sudo tee /etc/apt/sources.list.d/deb-multimedia.list
+sudo apt update -y
 #Flatpak Requirements
 sudo apt install -y plasma-discover-backend-flatpak
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
