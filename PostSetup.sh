@@ -122,13 +122,10 @@ fi
 #Enable Dvd playback
 sudo dpkg-reconfigure libdvd-pkg
 
-
 #Windows Media Codecs
-wget https://www.deb-multimedia.org/pool/main/d/deb-multimedia-keyring/deb-multimedia-keyring_2016.8.1_all.deb
-sudo dpkg -i deb-multimedia-keyring_2016.8.1_all.deb
-echo "deb http://www.deb-multimedia.org sid main non-free"
-| sudo tee /etc/apt/sources.list.d/deb-multimedia.list
-sudo apt update -y
+wget http://www.deb-multimedia.org/pool/non-free/w/w64codecs/w64codecs_20071007-dmo2_amd64.deb
+sudo dpkg -i w64codecs_20071007-dmo2_amd64.deb
+
 #Flatpak Requirements
 sudo apt install -y plasma-discover-backend-flatpak
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
