@@ -39,8 +39,8 @@ PKGS=(
 'htop'
 'nftables'
 'inkscape' #Vector Graphics Editor
-#'openjdk-17-jdk' # Java 17
-#'openjdk-17-jre' #Java 17 jre
+'openjdk-17-jdk' # Java 17
+'openjdk-17-jre' #Java 17 jre
 'qt5-style-kvantum'
 'libavcodec-extra' # Extra codecs
 'libdvdread8 ' #Enable dvd playback
@@ -252,3 +252,7 @@ sudo apt install -y linux-headers-6.1.0-7-amd64
 sudo apt purge -y firefox-esr
 sudo apt purge -y konqueror
 sudo update-alternatives --config editor
+
+#Minecraft Java Edition Launcher
+wget https://launcher.mojang.com/download/Minecraft.deb
+sudo dpkg -i Minecraft.deb
