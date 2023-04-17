@@ -137,8 +137,9 @@ mkdir -p "/home/$username/.fonts"
 mkdir -p "/home/$username/Pictures"
 mkdir -p "/home/$username/Wallpapers"
 mkdir -p /usr/share/sddm/themes
+cd $builddir
 cd /Wallpapers
-cp *.jpg /$HOME/$USER/Pictures/Wallpapers
+cp -R *.jpg /$HOME/$USER/Pictures/Wallpapers
 chown -R "$username:$username" "/home/$username"
 
 #Nala
@@ -184,6 +185,8 @@ sudo git clone https://github.com/EliverLara/Nordic.git
 #___________________________________#
 #Flatpaks
 
+#Flatseal addon
+flatpak install flathub com.github.tchx84.Flatseal
 #Spotify
 flatpak install -y flathub com.spotify.Client
 #Dolphin Emu
@@ -256,3 +259,6 @@ sudo update-alternatives --config editor
 #Minecraft Java Edition Launcher
 wget https://launcher.mojang.com/download/Minecraft.deb
 sudo dpkg -i Minecraft.deb
+
+#Fix time when dualbooting with Windows 10+
+sudo timedatectl set-local-rtc 1
