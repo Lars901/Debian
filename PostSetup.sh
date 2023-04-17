@@ -76,7 +76,7 @@ PKGS=(
 'libvirt-daemon' #Dependecy for virt-manager
 'virt-manager' 
 'rsync'
-'snapper'
+'snapper' #Linux filesystem snapshot management tool
 'systemsettings'
 'fonts-terminus'
 'flatpak'
@@ -139,7 +139,7 @@ mkdir -p "/home/$username/Wallpapers"
 mkdir -p /usr/share/sddm/themes
 cd $builddir
 cd /Wallpapers
-cp -R *.jpg /$HOME/$USER/Pictures/Wallpapers
+cp -R *.jpg /$HOME/$USER/Pictures/Wallpapers/
 chown -R "$username:$username" "/home/$username"
 
 #Nala
@@ -199,6 +199,11 @@ flatpak install -y flathub net.rpcs3.RPCS3
 cd "$builddir" || exit
 wget http://dus01.ps3.update.playstation.net/update/ps3/image/us/2023_0228_05fe32f5dc8c78acbcd84d36ee7fdc5b/PS3UPDAT.PUP
 
+#MineCraft
+flatpak install -y flathub com.mojang.Minecraft
+#Bedrock Edition
+flatpak install -y flathub io.mrarm.mcpelauncher
+
 #Discord
 flatpak install -y flathub com.discordapp.Discord
 
@@ -257,8 +262,8 @@ sudo apt purge -y konqueror
 sudo update-alternatives --config editor
 
 #Minecraft Java Edition Launcher
-wget https://launcher.mojang.com/download/Minecraft.deb
-sudo dpkg -i Minecraft.deb
+#wget https://launcher.mojang.com/download/Minecraft.deb
+#sudo dpkg -i Minecraft.deb
 
 #Fix time when dualbooting with Windows 10+
 sudo timedatectl set-local-rtc 1
