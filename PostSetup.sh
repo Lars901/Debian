@@ -145,8 +145,7 @@ chown -R "$username:$username" "/home/$username"
 #Nala
 sudo nala fetch
 #Libreoffice from Nala
-sudo nala install libreoffice
-
+sudo nala install -y libreoffice
 # Installing fonts
 cd "$builddir" || exit
 sudo nala install fonts-font-awesome -y
@@ -186,7 +185,7 @@ sudo git clone https://github.com/EliverLara/Nordic.git
 #Flatpaks
 
 #Flatseal addon
-flatpak install flathub com.github.tchx84.Flatseal
+flatpak install -y flathub com.github.tchx84.Flatseal
 #Spotify
 flatpak install -y flathub com.spotify.Client
 #Dolphin Emu
@@ -233,7 +232,7 @@ sudo apt install curl -y
 sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
 echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
 sudo apt update
-sudo apt install brave-browser
+sudo apt install -y brave-browser
 
 #Fonts
 cd "$builddir"
