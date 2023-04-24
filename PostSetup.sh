@@ -214,6 +214,12 @@ flatpak install -y flathub org.xiphos.Xiphos
 
 #Github Desktop 
 flatpak install -y flathub io.github.shiftey.Desktop
+
+#MakeMkv
+flatpak install -y flathub com.makemkv.MakeMKV
+
+#Thunderbird Mailclient
+flatpak install -y flathub org.mozilla.Thunderbird
 #_______________________________________________________________________#
 
 #sudo systemctl status libvirtd.service
@@ -250,7 +256,7 @@ sudo git clone https://github.com/EliverLara/Nordic.git
 
 sudo dpkg --add-architecture i386
 sudo apt update -y
-sudo apt install steam -y
+#sudo apt install steam -y (Black Window CSGO)
 sudo apt install -y build-essential dkms linux-headers-amd64
 sudo apt install -y mesa-vulkan-drivers libglx-mesa0:i386 mesa-vulkan-drivers:i386 libgl1-mesa-dri:i386
 sudo apt install -y winetricks
@@ -263,6 +269,8 @@ sudo update-alternatives --config editor
 #Minecraft Java Edition Launcher
 #wget https://launcher.mojang.com/download/Minecraft.deb
 #sudo dpkg -i Minecraft.deb
+#Steam Flatpak version
+flatpak install -y flathub com.valvesoftware.Steam
 
 #Fix time when dualbooting with Windows 10+
 sudo timedatectl set-local-rtc 1
