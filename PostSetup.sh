@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+r#!/usr/bin/env bash
 username=$(id -u -n 1000)
 builddir=$(pwd)
 
@@ -47,6 +47,7 @@ PKGS=(
 'libnewt-dev'
 'libtool'
 'libdvd-pkg'  #Enable dvd playback
+'libcupsimage2' #Canon Printer driver requirement
 'lsof'
 'lutris'
 'lzop'
@@ -220,6 +221,9 @@ flatpak install -y flathub com.makemkv.MakeMKV
 
 #Thunderbird Mailclient
 flatpak install -y flathub org.mozilla.Thunderbird
+
+#Chatterino
+flatpak install -y chatterino
 #_______________________________________________________________________#
 
 #sudo systemctl status libvirtd.service
