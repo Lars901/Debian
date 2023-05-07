@@ -98,6 +98,8 @@ PKGS=(
 'zip'
 'g++'
 'libx11-dev'
+'libvirglrenderer1'
+'virgl-server'
 'libxext-dev'
 'qtbase5-dev'
 'libqt5svg5-dev'
@@ -174,7 +176,7 @@ rm -rf Nordzy-cursors
 git clone https://github.com/vinceliuice/Layan-cursors
 cd Layan-cursors || exit
 chmod +x ./install.sh
-./install.sh
+sudo ./install.sh
 cd "$builddir" || exit
 rm -Layan-cursors 
 
@@ -193,6 +195,9 @@ flatpak install -y flathub com.spotify.Client
 flatpak install -y flathub org.DolphinEmu.dolphin-emu
 cd "/home/$username"
 wget https://downloads.romspedia.com/roms/Legend%20of%20Zelda%2C%20The%20-%20The%20Wind%20Waker%20%28USA%29.7z
+wget https://www.mediafire.com/file/uijj3i3349h8j2j/gba_bios.zip/file
+#Yuzu
+#flatpak install -y flathub org.yuzu_emu.yuzu - need encryption keys
 
 #RPCS3 Emu
 flatpak install -y flathub net.rpcs3.RPCS3
