@@ -60,7 +60,6 @@ PKGS=(
 'ntfs-3g'
 'ntp'
 'okular'
-'obs-studio'
 'netcat-openbsd'
 'os-prober'
 'obs-studio'
