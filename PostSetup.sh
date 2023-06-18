@@ -3,8 +3,8 @@ username=$(id -u -n 1000)
 builddir=$(pwd)
 
 # Change Debian to SID Branch
-sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak
-sudo cp sources.list /etc/apt/sources.list 
+#sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak
+#sudo cp sources.list /etc/apt/sources.list 
 sudo apt update -y
 
 PKGS=(
@@ -147,7 +147,7 @@ chown -R "$username:$username" "/home/$username"
 #Nala
 sudo nala fetch
 #Libreoffice from Nala
-sudo nala install -y libreoffice
+#sudo nala install -y libreoffice
 # Installing fonts
 cd "$builddir" || exit
 sudo nala install fonts-font-awesome -y
@@ -190,6 +190,10 @@ sudo git clone https://github.com/EliverLara/Nordic.git
 flatpak install -y flathub com.github.tchx84.Flatseal
 #Spotify
 flatpak install -y flathub com.spotify.Client
+
+#LibreOffice
+flatpak install -y flathub org.libreoffice.LibreOffice
+
 #Dolphin Emu
 flatpak install -y flathub org.DolphinEmu.dolphin-emu
 cd "/home/$username"
@@ -252,6 +256,7 @@ sudo apt install -y brave-browser
 cd "$builddir"
 wget http://ftp.de.debian.org/debian/pool/contrib/m/msttcorefonts/ttf-mscorefonts-installer_3.6_all.deb
 sudo dpkg -i ttf-mscorefonts-installer_3.6_all.deb
+wget http://plasmasturm.org/dl/vistafonts-... | bash #VistaFonts
 
 #sudo systemctl status libvirtd.service
 sudo adduser $User libvirt
