@@ -146,8 +146,6 @@ chown -R "$username:$username" "/home/$username"
 
 #Nala
 sudo nala fetch
-#Libreoffice from Nala
-#sudo nala install -y libreoffice
 # Installing fonts
 cd "$builddir" || exit
 sudo nala install fonts-font-awesome -y
@@ -188,6 +186,9 @@ sudo git clone https://github.com/EliverLara/Nordic.git
 
 #Flatseal addon
 flatpak install -y flathub com.github.tchx84.Flatseal
+
+#KGet Download manager
+flatpak install -y flathub org.kde.kget
 #Spotify
 flatpak install -y flathub com.spotify.Client
 
@@ -199,8 +200,8 @@ flatpak install -y flathub org.DolphinEmu.dolphin-emu
 cd "/home/$username"
 wget https://downloads.romspedia.com/roms/Legend%20of%20Zelda%2C%20The%20-%20The%20Wind%20Waker%20%28USA%29.7z
 wget https://www.mediafire.com/file/uijj3i3349h8j2j/gba_bios.zip/file
-#Yuzu
-#flatpak install -y flathub org.yuzu_emu.yuzu - need encryption keys
+#Ryujinx Emu
+flatpak install -y flathub org.ryujinx.Ryujinx
 
 #RPCS3 Emu
 flatpak install -y flathub net.rpcs3.RPCS3
