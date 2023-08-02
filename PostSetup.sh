@@ -105,6 +105,9 @@ PKGS=(
 'libqt5x11extras5-dev'
 'libkf5windowsystem-dev'
 'qttools5-dev-tools'
+'libsdl2-2.0' 
+'libsdl2-dev' 
+'libalut-dev'
 )
 
 for PKG in "${PKGS[@]}"; do
