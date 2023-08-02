@@ -39,6 +39,7 @@ PKGS=(
 'htop'
 'nftables'
 'inkscape' #Vector Graphics Editor
+'cabextract'
 'openjdk-17-jdk' # Java 17
 'openjdk-17-jre' #Java 17 jre
 'qt5-style-kvantum'
@@ -203,10 +204,11 @@ flatpak install -y flathub org.DolphinEmu.dolphin-emu
 cd "/home/$username"
 wget https://downloads.romspedia.com/roms/Legend%20of%20Zelda%2C%20The%20-%20The%20Wind%20Waker%20%28USA%29.7z
 wget https://www.mediafire.com/file/uijj3i3349h8j2j/gba_bios.zip/file
+
 #Ryujinx Emu
 flatpak install -y flathub org.ryujinx.Ryujinx
 wget https://drive.google.com/file/d/1i67zoVVm9AAYRgoKIRsPcPNVETLvseIU/view?usp=sharing
-
+wget https://drive.google.com/file/d/1HiSTp90tiBFh3ELVbjsX-8SeUkOodxKz/view?usp=sharing
 
 #RPCS3 Emu
 flatpak install -y flathub net.rpcs3.RPCS3
