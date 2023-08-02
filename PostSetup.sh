@@ -205,6 +205,8 @@ wget https://downloads.romspedia.com/roms/Legend%20of%20Zelda%2C%20The%20-%20The
 wget https://www.mediafire.com/file/uijj3i3349h8j2j/gba_bios.zip/file
 #Ryujinx Emu
 flatpak install -y flathub org.ryujinx.Ryujinx
+wget https://drive.google.com/file/d/1i67zoVVm9AAYRgoKIRsPcPNVETLvseIU/view?usp=sharing
+
 
 #RPCS3 Emu
 flatpak install -y flathub net.rpcs3.RPCS3
@@ -258,8 +260,8 @@ sudo apt install -y brave-browser
 
 #Fonts
 cd "$builddir"
-wget http://ftp.de.debian.org/debian/pool/contrib/m/msttcorefonts/ttf-mscorefonts-installer_3.6_all.deb
-sudo dpkg -i ttf-mscorefonts-installer_3.6_all.deb
+wget http://ftp.de.debian.org/debian/pool/contrib/m/msttcorefonts/ttf-mscorefonts-installer_3.8.1_all.deb
+sudo dpkg -i ttf-mscorefonts-installer_3.8.1_all.deb
 wget http://plasmasturm.org/dl/vistafonts-... | bash #VistaFonts
 
 #sudo systemctl status libvirtd.service
