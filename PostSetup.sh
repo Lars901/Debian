@@ -44,11 +44,10 @@ PKGS=(
 'openjdk-17-jre' #Java 17 jre
 'qt5-style-kvantum'
 'libavcodec-extra' # Extra codecs
-'libdvdread8 ' #Enable dvd playback
 'libnewt-dev'
 'libtool'
-'libdvd-pkg'  #Enable dvd playback
 'libcupsimage2' #Canon Printer driver requirement
+'firmware-linux-nonfree' #Firmware
 'lsof'
 'lutris'
 'lzop'
@@ -94,7 +93,7 @@ PKGS=(
 'wget'
 'kde-zeroconf'
 'ktorrent'
-'kde-baseapps'
+#'kde-baseapps'
 'zip'
 'g++'
 'libx11-dev'
@@ -126,6 +125,10 @@ elif lspci | grep -E "Integrated Graphics Controller"; then
 fi
 
 #Enable Dvd playback
+wget http://ftp.de.debian.org/debian/pool/contrib/libd/libdvd-pkg/libdvd-pkg_1.4.3-1-1_all.deb
+wget http://ftp.de.debian.org/debian/pool/main/libd/libdvdread/libdvdread8_6.1.3-1_amd64.deb
+sudo dpkg -i libdvd-pkg_1.4.3-1-1_all.deb
+sudo dpkg -i libdvdread8_6.1.3-1_amd64.deb
 sudo dpkg-reconfigure libdvd-pkg
 
 #Windows Media Codecs
@@ -143,9 +146,10 @@ mkdir -p "/home/$username/.fonts"
 mkdir -p "/home/$username/Pictures"
 mkdir -p "/home/$username/Wallpapers"
 mkdir -p /usr/share/sddm/themes
+sudo mkdir -p "/usr/share/sddm"
 cd $builddir
-cd /Wallpapers
-cp -R *.jpg /$HOME/$USER/Pictures/Wallpapers/
+#cd /Wallpapers
+#cp -R *.jpg /$HOME/$USER/Pictures/Wallpapers/
 chown -R "$username:$username" "/home/$username"
 
 #Nala
@@ -205,10 +209,11 @@ cd "/home/$username"
 wget https://downloads.romspedia.com/roms/Legend%20of%20Zelda%2C%20The%20-%20The%20Wind%20Waker%20%28USA%29.7z
 wget https://www.mediafire.com/file/uijj3i3349h8j2j/gba_bios.zip/file
 
-#Ryujinx Emu
+#Ryujinx Emu and fix vm.max_map count for games
 flatpak install -y flathub org.ryujinx.Ryujinx
-wget https://drive.google.com/file/d/1i67zoVVm9AAYRgoKIRsPcPNVETLvseIU/view?usp=sharing
-wget https://drive.google.com/file/d/1HiSTp90tiBFh3ELVbjsX-8SeUkOodxKz/view?usp=sharing
+#wget https://drive.google.com/file/d/1i67zoVVm9AAYRgoKIRsPcPNVETLvseIU/view?usp=sharing
+#wget https://drive.google.com/file/d/1HiSTp90tiBFh3ELVbjsX-8SeUkOodxKz/view?usp=sharing
+sudo sysctl -w vm.max_map_count=1048576
 
 #RPCS3 Emu
 flatpak install -y flathub net.rpcs3.RPCS3
@@ -251,14 +256,15 @@ sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | 
 wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg | gpg --dearmor | sudo dd of=/usr/share/keyrings/vscodium-archive-keyring.gpg
 echo 'deb [ signed-by=/usr/share/keyrings/vscodium-archive-keyring.gpg ] https://download.vscodium.com/debs vscodium main' | sudo tee /etc/apt/sources.list.d/vscodium.list
 sudo apt update
-sudo apt install codium -y
+sudo nala install codium -y
 
 #Brave Browser
-sudo apt install curl -y
+sudo nala install curl -y
 sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
 echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
 sudo apt update
-sudo apt install -y brave-browser
+sudo nala install -y brave-browser
+echo "deb [arch=amd64 signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
 
 #Fonts
 cd "$builddir"
@@ -275,14 +281,21 @@ sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | 
 cd /usr/share/themes/
 sudo git clone https://github.com/EliverLara/Nordic.git
 
-sudo dpkg --add-architecture i386
-sudo apt update -y
+#Multilib support
+sudo dpkg --add-architecture i386 && sudo apt update
+sudo apt install \
+      wine \
+      wine32 \
+      wine64 \
+      libwine \
+      libwine:i386 \
+      fonts-wine
+
 #sudo apt install steam -y (Black Window CSGO)
-sudo apt install -y build-essential dkms linux-headers-amd64
-sudo apt install -y mesa-vulkan-drivers libglx-mesa0:i386 mesa-vulkan-drivers:i386 libgl1-mesa-dri:i386
-sudo apt install -y winetricks
-sudo apt install -y libxtst6:i386 libxrandr2:i386 libglib2.0-0:i386 libgtk2.0-0:i386 libpulse0:i386 libgdk-pixbuf2.0-0:i386 libcurl4-openssl-dev:i386 libopenal1:i386 libusb-1.0-0:i386 libdbus-glib-1-2:i386 
-sudo apt install -y linux-headers-6.1.0-7-amd64
+sudo nala install -y build-essential dkms linux-headers-amd64
+sudo nala install -y mesa-vulkan-drivers libglx-mesa0:i386 mesa-vulkan-drivers:i386 libgl1-mesa-dri:i386
+sudo nala install -y libxtst6:i386 libxrandr2:i386 libglib2.0-0:i386 libgtk2.0-0:i386 libpulse0:i386 libgdk-pixbuf2.0-0:i386 libcurl4-openssl-dev:i386 libopenal1:i386 libusb-1.0-0:i386 libdbus-glib-1-2:i386 
+sudo nala install -y linux-headers-$(uname -r)
 sudo apt purge -y firefox-esr
 sudo apt purge -y konqueror
 sudo update-alternatives --config editor
