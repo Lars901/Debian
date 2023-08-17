@@ -147,6 +147,7 @@ chown -R "$username:$username" "/home/$username"
 sudo nala fetch
 # Installing fonts
 cd "$builddir" || exit
+git clone https://github.com/SpudGunMan/segoe-ui-linux
 sudo nala install fonts-font-awesome -y
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.zip
 unzip FiraCode.zip -d "/home/$username/.fonts"
@@ -154,6 +155,7 @@ wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip
 unzip Meslo.zip -d "/home/$username/.fonts"
 mv dotfonts/fontawesome/otfs/*.otf "/home/$username/.fonts/"
 chown "$username:$username" "/home/$username/.fonts/*"
+sudo nala install fonts-crosextra-carlito fonts-crosextra-caladea -y
 
 # Reloading Font cache
 fc-cache -vf
