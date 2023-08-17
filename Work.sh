@@ -1,4 +1,4 @@
-r#!/usr/bin/env bash
+#!/usr/bin/env bash
 username=$(id -u -n 1000)
 builddir=$(pwd)
 
@@ -44,7 +44,6 @@ PKGS=(
 'libcupsimage2' #Canon Printer driver requirement
 'firmware-linux-nonfree' #Firmware
 'lsof'
-'lutris'
 'lzop'
 'm4'
 'make'
@@ -77,7 +76,7 @@ PKGS=(
 'flameshot'
 'traceroute'
 'ufw'
-'unrar'
+'unrar-free'
 'unzip'
 'usbutils'
 'vulkan-tools'
