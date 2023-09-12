@@ -191,7 +191,13 @@ rm -Layan-cursors
 cd /usr/share/themes/ || exit
 sudo git clone https://github.com/EliverLara/Nordic.git
 
-#___________________________________#
+
+#________________________________________________________
+#AppImg
+wget https://downloads.shipofharkinian.com/SoH-Sulu-Bravo-Linux-Performance.zip
+tar -xfv SoH-Sulu-Bravo-Linux-Performance.zip
+
+#___________________________________
 #Flatpaks
 
 #Flatseal addon
@@ -205,6 +211,10 @@ flatpak install -y flathub com.spotify.Client
 #LibreOffice
 flatpak install -y flathub org.libreoffice.LibreOffice
 
+#RetroArch
+flatpak install -y  --user flathub org.libretro.RetroArch
+flatpak update --user org.libretro.RetroArch
+
 #Dolphin Emu
 flatpak install -y flathub org.DolphinEmu.dolphin-emu
 cd "/home/$username"
@@ -216,6 +226,9 @@ flatpak install -y flathub org.ryujinx.Ryujinx
 #wget https://drive.google.com/file/d/1i67zoVVm9AAYRgoKIRsPcPNVETLvseIU/view?usp=sharing
 #wget https://drive.google.com/file/d/1HiSTp90tiBFh3ELVbjsX-8SeUkOodxKz/view?usp=sharing
 sudo sysctl -w vm.max_map_count=1048576
+
+#Citra Emu
+flatpak install -y flathub org.citra_emu.citra
 
 #RPCS3 Emu
 flatpak install -y flathub net.rpcs3.RPCS3
