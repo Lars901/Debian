@@ -59,6 +59,7 @@ PKGS=(
 'neofetch'
 'ntfs-3g'
 'ntp'
+'ntpdate'
 'okular'
 'netcat-openbsd'
 'os-prober'
