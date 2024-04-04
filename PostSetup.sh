@@ -268,6 +268,10 @@ sudo adduser $User libvirt
 sudo adduser $User libvirt-qemu
 sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | sudo sh /dev/stdin
 
+#SoH
+cd cd "$builddir" || exit
+wget https://github.com/HarbourMasters/Shipwright/releases/download/8.0.4/SoH-MacReady-Echo-Linux-Performance.zip
+
 #extra programs
 wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg | gpg --dearmor | sudo dd of=/usr/share/keyrings/vscodium-archive-keyring.gpg
 echo 'deb [ signed-by=/usr/share/keyrings/vscodium-archive-keyring.gpg ] https://download.vscodium.com/debs vscodium main' | sudo tee /etc/apt/sources.list.d/vscodium.list
