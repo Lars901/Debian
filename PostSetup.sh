@@ -56,7 +56,6 @@ PKGS=(
 'milou'
 'nala' #Package manager
 'nano'
-'neofetch'
 'ntfs-3g'
 'ntp'
 'ntpdate'
@@ -277,6 +276,8 @@ wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.g
 echo 'deb [ signed-by=/usr/share/keyrings/vscodium-archive-keyring.gpg ] https://download.vscodium.com/debs vscodium main' | sudo tee /etc/apt/sources.list.d/vscodium.list
 sudo apt update
 sudo nala install codium -y
+cd "$builddir" || exit
+wget https://github.com/fastfetch-cli/fastfetch/releases/download/2.21.1/fastfetch-linux-amd64.deb
 
 #Brave Browser
 sudo nala install curl -y
