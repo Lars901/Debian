@@ -49,7 +49,7 @@ PKGS=(
 'libcupsimage2' #Canon Printer driver requirement
 'firmware-linux-nonfree' #Firmware
 'lsof'
-'lutris'
+#'lutris'
 'lzop'
 'm4'
 'make'
