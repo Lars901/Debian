@@ -260,6 +260,9 @@ flatpak install -y flathub org.mozilla.Thunderbird
 
 #Chatterino
 flatpak install -y chatterino
+
+#Taskmanager
+flatpak install -y flathub net.nokyan.Resources
 #_______________________________________________________________________#
 
 #sudo systemctl status libvirtd.service
