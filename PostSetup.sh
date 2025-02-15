@@ -280,7 +280,7 @@ echo 'deb [ signed-by=/usr/share/keyrings/vscodium-archive-keyring.gpg ] https:/
 sudo apt update
 sudo nala install codium -y
 cd "$builddir" || exit
-wget https://github.com/fastfetch-cli/fastfetch/releases/download/2.21.1/fastfetch-linux-amd64.deb
+wget https://github.com/fastfetch-cli/fastfetch/releases/download/2.36.1/fastfetch-linux-amd64.deb
 
 #Brave Browser
 sudo nala install curl -y
