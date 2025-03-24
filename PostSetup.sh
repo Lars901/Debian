@@ -332,3 +332,5 @@ flatpak install -y flathub com.valvesoftware.Steam
 
 #Fix time when dualbooting with Windows 10+
 sudo timedatectl set-local-rtc 1
+#Unattended upgrades
+sudo dpkg-reconfigure unattended-upgrades
