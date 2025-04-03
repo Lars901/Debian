@@ -194,9 +194,10 @@ sudo git clone https://github.com/EliverLara/Nordic.git
 
 #________________________________________________________
 #AppImg
-wget https://downloads.shipofharkinian.com/SoH-Sulu-Bravo-Linux-Performance.zip
+wget https://github.com/HarbourMasters/Shipwright/releases/download/9.0.0/SoH-Blair-Alfa-Linux.zip
 tar -xfv SoH-Sulu-Bravo-Linux-Performance.zip
-wget https://evilgames.eu/texture-packs/files/oot-reloaded-v10.4.0-soh-otr.7z
+wget https://evilgames.eu/texture-packs/files/oot-reloaded-v10.4.2-soh-otr-hd.7z 
+#wget https://evilgames.eu/texture-packs/files/oot-reloaded-v10.4.2-soh-otr-4k.7z
 #___________________________________
 #Flatpaks
 
