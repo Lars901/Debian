@@ -192,8 +192,18 @@ sudo git clone https://github.com/EliverLara/Nordic.git
 
 #________________________________________________________
 #AppImg
+#SoH
+cd "$builddir" || exit
+wget https://github.com/HarbourMasters/Shipwright/releases/download/9.1.2/SoH-Copper-Charlie-Linux.zip
+tar -xfv SoH-Copper-Charlie-Linux.zip
+wget https://github.com/HarbourMasters/2ship2harkinian/releases/download/4.0.2/2Ship-Keiichi-Charlie-Linux.zip
+tar -xfv 2Ship-Keiichi-Charlie-Linux.zip
 wget https://evilgames.eu/files/texture-packs/oot-reloaded-v11.0.0-dolphin-dds-hd.7z
 #wget https://evilgames.eu/files/texture-packs/oot-reloaded-v11.0.0-dolphin-dds-4k.7z
+wget https://evilgames.eu/files/texture-packs/mm-reloaded-v11.0.2-dolphin-dds-hd.7z
+#wget https://evilgames.eu/files/texture-packs/mm-reloaded-v11.0.2-dolphin-dds-4k.7z
+
+
 #___________________________________
 #Flatpaks
 
@@ -267,10 +277,6 @@ sudo adduser $User libvirt
 sudo adduser $User libvirt-qemu
 sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | sudo sh /dev/stdin
 
-#SoH
-cd cd "$builddir" || exit
-wget https://github.com/HarbourMasters/Shipwright/releases/download/9.1.2/SoH-Copper-Charlie-Linux.zip
-tar -xfv SoH-Copper-Charlie-Linux.zip
 
 #extra programs
 wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg | gpg --dearmor | sudo dd of=/usr/share/keyrings/vscodium-archive-keyring.gpg
