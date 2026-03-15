@@ -9,9 +9,8 @@ sudo apt update -y
 
 PKGS=(
 'alsa-utils' # audio utils
-'ark' # compression
 'apt-transport-https' #Dependecy for Brave
-'kio-audiocd' 
+'ark' # compression
 'autoconf' # build
 'automake' # build
 'bash-completion'
@@ -20,94 +19,95 @@ PKGS=(
 'bluedevil'
 'bluez'
 'breeze'
+'bridge-utils' #Dependecy for quemu
 'btrfs-progs'
+'cabextract'
 'celluloid' # video players
 'cups' #Common Unix Printing System
 'curl'
 'dialog'
 'dosfstools'
-'fonts-terminus'
+'firmware-linux-nonfree' #Firmware
+'flameshot'
+'flatpak'
 'flex'
+'fonts-terminus'
 'fuse3'
 'fuseiso'
+'g++'
 'gamemode'
-'gdebi-core'
 'gcc'
+'gdebi-core'
 'gdisk'
 'handbrake'
 'haveged'
 'htop'
-'nftables'
 'inkscape' #Vector Graphics Editor
-'cabextract'
-'openjdk-17-jdk' # Java 17
-'openjdk-17-jre' #Java 17 jre
-'qt5-style-kvantum'
+'kde-zeroconf'
+'kio-audiocd' 
+'ktorrent'
+'libalut-dev'
 'libavcodec-extra' # Extra codecs
-'libnewt-dev'
-'libtool'
 'libcupsimage2' #Canon Printer driver requirement
-'firmware-linux-nonfree' #Firmware
+'libkf5windowsystem-dev'
+'libnewt-dev'
+'libqt5svg5-dev'
+'libqt5x11extras5-dev'
+'libsdl2-2.0' 
+'libsdl2-dev' 
+'libtool'
+'libvirglrenderer1'
+'libdvd-pkg'
+'libvirt-clients' #Dependecy for quemu
+'libvirt-daemon-system' #Dependecy for quemu
+'libvirt-daemon' #Dependecy for virt-manager
+'libx11-dev'
+'libxext-dev'
 'lsof'
-#'lutris'
 'lzop'
 'm4'
 'make'
 'milou'
 'nala' #Package manager
 'nano'
+'netcat-openbsd'
+'nftables'
 'ntfs-3g'
 'ntp'
 'ntpdate'
-'okular'
-'netcat-openbsd'
-'os-prober'
 'obs-studio'
+'okular'
+'openjdk-21-jdk' # Java 17
+'openjdk-21-jre' #Java 17 jre
+'os-prober'
 'p7zip'
 'patch'
 'pkgconf' 
 'print-manager'
 'python3-pip'
 'qemu-kvm'
-'libvirt-clients' #Dependecy for quemu
-'libvirt-daemon-system' #Dependecy for quemu
-'bridge-utils' #Dependecy for quemu
-'virtinst' #Dependecy for virt-manager
-'libvirt-daemon' #Dependecy for virt-manager
-'virt-manager' 
+'qt5-style-kvantum'
+'qtbase5-dev'
+'qttools5-dev-tools'
 'rsync'
 'snapper' #Linux filesystem snapshot management tool
 'systemsettings'
-'fonts-terminus'
-'flatpak'
-'flameshot'
-'traceroute'
 'telegram-desktop' #Instant messaging client
+'traceroute'
 'ufw'
 'unrar'
 'unzip'
 'usbutils'
-'vulkan-tools'
-'virt-manager'
-'virt-viewer'
-'wget'
-'kde-zeroconf'
-'ktorrent'
-#'kde-baseapps'
-'zip'
-'g++'
-'libx11-dev'
-'libvirglrenderer1'
 'virgl-server'
-'libxext-dev'
-'qtbase5-dev'
-'libqt5svg5-dev'
-'libqt5x11extras5-dev'
-'libkf5windowsystem-dev'
-'qttools5-dev-tools'
-'libsdl2-2.0' 
-'libsdl2-dev' 
-'libalut-dev'
+'virt-manager' 
+'virt-viewer'
+'virtinst' #Dependecy for virt-manager
+'vulkan-tools'
+'wget'
+'wireless-regdb' #regulatory database for the Linux kernel's wireless subsystem'
+'zip'
+#'kde-baseapps'
+#'lutris'
 )
 
 for PKG in "${PKGS[@]}"; do
@@ -125,10 +125,6 @@ elif lspci | grep -E "Integrated Graphics Controller"; then
 fi
 
 #Enable Dvd playback
-wget http://ftp.de.debian.org/debian/pool/contrib/libd/libdvd-pkg/libdvd-pkg_1.4.3-1-1_all.deb
-wget http://ftp.de.debian.org/debian/pool/main/libd/libdvdread/libdvdread8_6.1.3-1_amd64.deb
-sudo dpkg -i libdvd-pkg_1.4.3-1-1_all.deb
-sudo dpkg -i libdvdread8_6.1.3-1_amd64.deb
 sudo dpkg-reconfigure libdvd-pkg
 
 #Windows Media Codecs
@@ -194,10 +190,8 @@ sudo git clone https://github.com/EliverLara/Nordic.git
 
 #________________________________________________________
 #AppImg
-wget https://github.com/HarbourMasters/Shipwright/releases/download/9.0.0/SoH-Blair-Alfa-Linux.zip
-tar -xfv SoH-Sulu-Bravo-Linux-Performance.zip
-wget https://evilgames.eu/texture-packs/files/oot-reloaded-v10.4.2-soh-otr-hd.7z 
-#wget https://evilgames.eu/texture-packs/files/oot-reloaded-v10.4.2-soh-otr-4k.7z
+wget https://evilgames.eu/files/texture-packs/oot-reloaded-v11.0.0-dolphin-dds-hd.7z
+#wget https://evilgames.eu/files/texture-packs/oot-reloaded-v11.0.0-dolphin-dds-4k.7z
 #___________________________________
 #Flatpaks
 
@@ -223,13 +217,13 @@ wget https://downloads.romspedia.com/roms/Legend%20of%20Zelda%2C%20The%20-%20The
 wget https://www.mediafire.com/file/uijj3i3349h8j2j/gba_bios.zip/file
 
 #Ryujinx Emu and fix vm.max_map count for games
-flatpak install -y flathub org.ryujinx.Ryujinx
+flatpak install -y flathub io.github.ryubing.Ryujinx
 #wget https://drive.google.com/file/d/1i67zoVVm9AAYRgoKIRsPcPNVETLvseIU/view?usp=sharing
 #wget https://drive.google.com/file/d/1HiSTp90tiBFh3ELVbjsX-8SeUkOodxKz/view?usp=sharing
 sudo sysctl -w vm.max_map_count=1048576
 
-#Citra Emu
-flatpak install -y flathub org.citra_emu.citra
+#Azahar Emu
+flatpak install flathub org.azahar_emu.Azahar
 
 #RPCS3 Emu
 flatpak install -y flathub net.rpcs3.RPCS3
@@ -273,7 +267,8 @@ sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | 
 
 #SoH
 cd cd "$builddir" || exit
-wget https://github.com/HarbourMasters/Shipwright/releases/download/8.0.4/SoH-MacReady-Echo-Linux-Performance.zip
+wget https://github.com/HarbourMasters/Shipwright/releases/download/9.1.2/SoH-Copper-Charlie-Linux.zip
+tar -xfv SoH-Copper-Charlie-Linux.zip
 
 #extra programs
 wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg | gpg --dearmor | sudo dd of=/usr/share/keyrings/vscodium-archive-keyring.gpg
@@ -281,7 +276,9 @@ echo 'deb [ signed-by=/usr/share/keyrings/vscodium-archive-keyring.gpg ] https:/
 sudo apt update
 sudo nala install codium -y
 cd "$builddir" || exit
-wget https://github.com/fastfetch-cli/fastfetch/releases/download/2.36.1/fastfetch-linux-amd64.deb
+wget https://github.com/fastfetch-cli/fastfetch/releases/download/2.60.0/fastfetch-linux-amd64.deb
+sudo apt install ./fastfetch-linux-amd64.deb -y
+
 
 #Brave Browser
 sudo nala install curl -y
@@ -293,8 +290,9 @@ echo "deb [arch=amd64 signed-by=/usr/share/keyrings/brave-browser-archive-keyrin
 
 #Fonts
 cd "$builddir"
-wget http://ftp.de.debian.org/debian/pool/contrib/m/msttcorefonts/ttf-mscorefonts-installer_3.8.1_all.deb
-sudo dpkg -i ttf-mscorefonts-installer_3.8.1_all.deb
+sudo apt install ttf-mscorefonts-installer -y
+#wget http://ftp.de.debian.org/debian/pool/contrib/m/msttcorefonts/ttf-mscorefonts-installer_3.8.1_all.deb
+#sudo dpkg -i ttf-mscorefonts-installer_3.8.1_all.deb
 wget http://plasmasturm.org/dl/vistafonts-... | bash #VistaFonts
 
 #sudo systemctl status libvirtd.service
