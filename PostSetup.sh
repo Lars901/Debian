@@ -77,8 +77,10 @@ PKGS=(
 'ntpdate'
 'obs-studio'
 'okular'
-'openjdk-21-jdk' # Java 17
-'openjdk-21-jre' #Java 17 jre
+'openjdk-21-jdk' # Java 21
+'openjdk-21-jre' #Java 21 jre
+'openjdk-25-jdk' # Java 25
+'openjdk-25-jre' #Java 25 jre
 'os-prober'
 'p7zip'
 'patch'
