@@ -49,6 +49,7 @@ PKGS=(
 'libalut-dev'
 'libavcodec-extra' # Extra codecs
 'libcupsimage2' #Canon Printer driver requirement
+'libdvd-pkg'
 'libkf5windowsystem-dev'
 'libnewt-dev'
 'libqt5svg5-dev'
@@ -57,7 +58,6 @@ PKGS=(
 'libsdl2-dev' 
 'libtool'
 'libvirglrenderer1'
-'libdvd-pkg'
 'libvirt-clients' #Dependecy for quemu
 'libvirt-daemon-system' #Dependecy for quemu
 'libvirt-daemon' #Dependecy for virt-manager
@@ -93,6 +93,7 @@ PKGS=(
 'qttools5-dev-tools'
 'rsync'
 'snapper' #Linux filesystem snapshot management tool
+'software-properties-common'
 'systemsettings'
 'telegram-desktop' #Instant messaging client
 'traceroute'
@@ -118,12 +119,38 @@ for PKG in "${PKGS[@]}"; do
 done
 
 # Graphics Drivers find and install
-if lspci | grep -E "NVIDIA|GeForce"; then
-    sudo apt -y install nvidia nvidia-xconfig
+if lspci | grep -Ei "nvidia|geforce" > /dev/null; then
+    echo "🎮 Nvidia-skjermkort oppdaget. Installerer drivere..."
+
+    # Legg til støtte for 32-bit pakker (nødvendig for Steam/Proton)
+    sudo dpkg --add-architecture i386
+    sudo apt update
+
+    # Installer selve driveren, kontrollpanel og 32-bit biblioteker
+    sudo apt install -y nvidia-driver nvidia-smi nvidia-settings libgl1-nvidia-glvnd-glx:i386
+
+    echo "✅ Nvidia-drivere er installert. Ikke kjør nvidia-xconfig på en hybrid-bærbar!"
+else
+    echo "⏭️ Ingen Nvidia-maskinvare funnet. Hopper over driverinstallasjon."
+fi
 elif lspci | grep -E "Radeon"; then
-    sudo apt -y install xserver-xorg-video-amdgpu firmware-amd-graphics
+    sudo apt install firmware-amd-graphics mesa-vulkan-drivers xserver-xorg-video-amdgpu
 elif lspci | grep -E "Integrated Graphics Controller"; then
     sudo apt -y install libva-intel-driver libvdpau-va-gl lib32-vulkan-intel vulkan-intel libva-intel-driver libva-utils --needed --noconfirm
+fi
+
+# Sjekk om maskinen er produsert av ASUS
+if grep -qi "asus" /sys/class/dmi/id/sys_vendor; then
+    echo "🎯 Detekterte en ASUS-maskin. Installerer supergfxctl..."
+    
+    # Kjører installasjonen
+    sudo apt update
+    sudo apt install -y supergfxctl
+    
+    # Aktiverer bakgrunnstjenesten med en gang
+    sudo systemctl enable --now supergfxd
+else
+    echo "⏭️ Ikke en ASUS-maskin (Produsent: $(cat /sys/class/dmi/id/sys_vendor)). Hopper over supergfxctl."
 fi
 
 #Enable Dvd playback
@@ -189,6 +216,11 @@ rm -Layan-cursors
 cd /usr/share/themes/ || exit
 sudo git clone https://github.com/EliverLara/Nordic.git
 
+#Enable Backports
+sudo add-apt-repository \
+  "deb http://deb.debian.org/debian trixie-backports main"
+sudo apt update
+sudo apt install -t trixie-backports linux-image-amd64 linux-headers-amd64
 
 #________________________________________________________
 #AppImg
@@ -198,12 +230,11 @@ wget https://github.com/HarbourMasters/Shipwright/releases/download/9.1.2/SoH-Co
 tar -xfv SoH-Copper-Charlie-Linux.zip
 wget https://github.com/HarbourMasters/2ship2harkinian/releases/download/4.0.2/2Ship-Keiichi-Charlie-Linux.zip
 tar -xfv 2Ship-Keiichi-Charlie-Linux.zip
-wget https://evilgames.eu/files/texture-packs/oot-reloaded-v11.0.0-dolphin-dds-hd.7z
+#wget https://evilgames.eu/files/texture-packs/oot-reloaded-v11.0.0-dolphin-dds-hd.7z
 #wget https://evilgames.eu/files/texture-packs/oot-reloaded-v11.0.0-dolphin-dds-4k.7z
-wget https://evilgames.eu/files/texture-packs/mm-reloaded-v11.0.2-dolphin-dds-hd.7z
-#wget https://evilgames.eu/files/texture-packs/mm-reloaded-v11.0.2-dolphin-dds-4k.7z
-
-
+wget https://github.com/GhostlyDark/MM-Reloaded-2S2H/releases/download/v11.0.3/mm-reloaded-v11.0.3-2ship-o2r-hd.7z
+wget https://github.com/DavidoTek/ProtonUp-Qt/releases/download/v2.15.1/ProtonUp-Qt-2.15.1-x86_64.AppImage
+wget 
 #___________________________________
 #Flatpaks
 
@@ -249,6 +280,9 @@ flatpak install -y flathub io.mrarm.mcpelauncher
 
 #Discord
 flatpak install -y flathub com.discordapp.Discord
+
+#Heroic Games Launcher
+flatpak install flathub -y com.heroicgameslauncher.hgl
 
 #Wallpaper downloader
 flatpak install -y flathub es.estoes.wallpaperDownloader
