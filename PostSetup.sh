@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 username=$(id -u -n 1000)
-builddir=$(pwd)
+builddir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # Change Debian to SID Branch
 #sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak
@@ -8,107 +8,114 @@ builddir=$(pwd)
 sudo apt update -y
 
 PKGS=(
-'alsa-utils' # audio utils
-'apt-transport-https' #Dependecy for Brave
-'ark' # compression
-'autoconf' # build
-'automake' # build
-'bash-completion'
-'binutils'
-'bison'
-'bluedevil'
-'bluez'
-'breeze'
-'bridge-utils' #Dependecy for quemu
-'btrfs-progs'
-'cabextract'
-'celluloid' # video players
-'cups' #Common Unix Printing System
-'curl'
-'dialog'
-'dosfstools'
-'firmware-linux-nonfree' #Firmware
-'flameshot'
-'flatpak'
-'flex'
-'fonts-terminus'
-'fuse3'
-'fuseiso'
-'g++'
-'gamemode'
-'gcc'
-'gdebi-core'
-'gdisk'
-'handbrake'
-'haveged'
-'htop'
-'inkscape' #Vector Graphics Editor
-'kde-zeroconf'
-'kio-audiocd' 
-'ktorrent'
-'libalut-dev'
-'libavcodec-extra' # Extra codecs
-'libcupsimage2' #Canon Printer driver requirement
-'libdvd-pkg'
-'libkf5windowsystem-dev'
-'libnewt-dev'
-'libqt5svg5-dev'
-'libqt5x11extras5-dev'
-'libsdl2-2.0' 
-'libsdl2-dev' 
-'libtool'
-'libvirglrenderer1'
-'libvirt-clients' #Dependecy for quemu
-'libvirt-daemon-system' #Dependecy for quemu
-'libvirt-daemon' #Dependecy for virt-manager
-'libx11-dev'
-'libxext-dev'
-'lsof'
-'lzop'
-'m4'
-'make'
-'milou'
-'nala' #Package manager
-'nano'
-'netcat-openbsd'
-'nftables'
-'ntfs-3g'
-'ntp'
-'ntpdate'
-'obs-studio'
-'okular'
-'openjdk-21-jre' # Java 21 Runtime
-'openjdk-25-jre' # Java 25 Runtime
-'os-prober'
-'p7zip'
-'patch'
-'pkgconf' 
-'print-manager'
-'python3-pip'
-'qemu-kvm'
-'qt5-style-kvantum'
-'qtbase5-dev'
-'qttools5-dev-tools'
-'rsync'
-'snapper' #Linux filesystem snapshot management tool
-'software-properties-common'
-'systemsettings'
-'telegram-desktop' #Instant messaging client
-'traceroute'
-'ufw'
-'unrar'
-'unzip'
-'usbutils'
-'virgl-server'
-'virt-manager' 
-'virt-viewer'
-'virtinst' #Dependecy for virt-manager
-'vulkan-tools'
-'wget'
-'wireless-regdb' #regulatory database for the Linux kernel's wireless subsystem'
-'zip'
-#'kde-baseapps'
-#'lutris'
+    'alsa-utils' # ALSA audio utilities
+    'ark' # KDE archive manager
+    'autoconf' # Build configuration tools
+    'automake' # Build automation tools
+    'bash-completion' # Bash command completion
+    'binutils' # Binary development utilities
+    'bison' # Parser generator
+    'bluedevil' # KDE Bluetooth integration
+    'bluez' # Bluetooth stack
+    'breeze' # KDE Breeze theme
+    'bridge-utils' # Network bridge utilities for virtual machines
+    'btrfs-progs' # Btrfs filesystem utilities
+    'cabextract' # Extract Microsoft Cabinet files
+    'celluloid' # GTK video player
+    'cups' # Common Unix Printing System
+    'curl' # Command-line data transfer tool
+    'dialog' # Terminal dialog boxes
+    'dosfstools' # FAT filesystem utilities
+    'firmware-linux-nonfree' # Non-free Linux firmware
+    'flameshot' # Screenshot utility
+    'flatpak' # Flatpak application framework
+    'flex' # Lexical analyzer generator
+    'fontforge' # Font editor and converter
+    'fonts-terminus' # Terminus fonts
+    'fuse3' # Filesystem in Userspace
+    'fuseiso' # Mount ISO images using FUSE
+    'g++' # GNU C++ compiler
+    'gamemode' # Game performance optimization daemon
+    'gcc' # GNU C compiler
+    'gdebi-core' # Install local DEB packages with dependencies
+    'gdisk' # GPT partitioning utility
+    'handbrake' # Video transcoder
+    'haveged' # Entropy daemon
+    'htop' # Interactive process monitor
+    'inkscape' # Vector graphics editor
+    'kde-zeroconf' # KDE Zeroconf integration
+    'kio-audiocd' # KDE Audio CD KIO support
+    'ktorrent' # KDE BitTorrent client
+    'libalut-dev' # OpenAL utility toolkit development files
+    'libavcodec-extra' # Additional multimedia codecs
+    'libcupsimage2t64' # CUPS image library
+    'libdvd-pkg' # DVD playback support
+    'libkf5windowsystem-dev' # KDE WindowSystem development files
+    'libnewt-dev' # Newt text UI development files
+    'libqt5svg5-dev' # Qt 5 SVG development files
+    'libqt5x11extras5-dev' # Qt 5 X11 Extras development files
+    'libsdl2-2.0-0' # SDL2 runtime library
+    'libsdl2-dev' # SDL2 development files
+    'libtool' # Generic library support tools
+    'libvirglrenderer1' # VirGL virtual GPU rendering library
+    'libvirt-clients' # libvirt command-line tools
+    'libvirt-daemon' # libvirt virtualization daemon
+    'libvirt-daemon-system' # libvirt system service and configuration
+    'libx11-dev' # X11 development files
+    'libxext-dev' # X11 extension development files
+    'lsof' # List open files
+    'lzop' # LZO compression utility
+    'm4' # GNU macro processor
+    'make' # Build automation tool
+    'milou' # KDE search component
+    'nala' # APT frontend
+    'nano' # Terminal text editor
+    'netcat-openbsd' # TCP/UDP networking utility
+    'nftables' # Linux firewall framework
+    'ntfs-3g' # NTFS filesystem support
+    'obs-studio' # Video recording and streaming
+    'okular' # KDE document viewer
+    'openjdk-21-jre' # Java 21 runtime
+    'openjdk-25-jre' # Java 25 runtime
+    'os-prober' # Detect other operating systems
+    '7zip' # 7-Zip archive utility
+    'patch' # Apply source code patches
+    'pkgconf' # Package compiler/linker metadata tool
+    'print-manager' # KDE printer management
+    'python3-pip' # Python package installer
+
+    # QEMU / KVM virtualization
+    'qemu-system-x86' # QEMU x86/x86-64 system emulator with KVM support
+    'qemu-utils' # QEMU disk image tools such as qemu-img
+    'ovmf' # UEFI and Secure Boot firmware for x86-64 virtual machines
+    'swtpm' # Software TPM emulator
+    'swtpm-tools' # Utilities for configuring virtual TPM devices
+    'virtiofsd' # Fast host directory sharing with virtual machines
+    'virgl-server' # VirGL vtest server
+    'virt-manager' # Graphical virtual machine manager
+    'virt-viewer' # Graphical virtual machine console
+    'virtinst' # Command-line virtual machine creation tools
+
+    'qt-style-kvantum' # Kvantum Qt theme engine
+    'qtbase5-dev' # Qt 5 base development files
+    'qttools5-dev-tools' # Qt 5 development tools
+    'rsync' # File synchronization utility
+    'snapper' # Filesystem snapshot management
+    'software-properties-common' # Repository management utilities
+    'systemsettings' # KDE System Settings
+    'telegram-desktop' # Telegram desktop client
+    'traceroute' # Network route diagnostic tool
+    'ufw' # Uncomplicated Firewall
+    'unrar' # RAR archive extraction
+    'unzip' # ZIP archive extraction
+    'usbutils' # USB device utilities
+    'vulkan-tools' # Vulkan diagnostic utilities
+    'wget' # Command-line download utility
+    'wireless-regdb' # Wireless regulatory database
+    'zip' # ZIP archive creation
+
+    #'kde-baseapps'
+    #'lutris'
 )
 
 for PKG in "${PKGS[@]}"; do
@@ -244,18 +251,26 @@ sudo dpkg -i w64codecs_20071007-dmo2_amd64.deb
 sudo apt install -y plasma-discover-backend-flatpak
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
-# Making .config and Moving config files and background to Pictures/Wallpapers
+# ============================================
+# User directories and wallpapers
+# ============================================
 cd "$builddir" || exit
 mkdir -p "/home/$username/.config"
 mkdir -p "/home/$username/.fonts"
-mkdir -p "/home/$username/Pictures"
-mkdir -p "/home/$username/Wallpapers"
-mkdir -p /usr/share/sddm/themes
-sudo mkdir -p "/usr/share/sddm"
-cd $builddir
-#cd /Wallpapers
-#cp -R *.jpg /$HOME/$USER/Pictures/Wallpapers/
-chown -R "$username:$username" "/home/$username"
+mkdir -p "/home/$username/Pictures/Wallpapers"
+sudo mkdir -p /usr/share/sddm/themes
+
+# Copy wallpapers from the Wallpapers directory next to this script.
+if [ -d "$builddir/Wallpapers" ]; then
+    echo "🖼️ Copying wallpapers..."
+    cp -R "$builddir/Wallpapers/." "/home/$username/Pictures/Wallpapers/"
+    sudo chown -R "$username:$username" "/home/$username/Pictures/Wallpapers"
+    echo "✅ Wallpapers copied."
+else
+    echo "⚠️ Wallpapers directory not found: $builddir/Wallpapers"
+fi
+
+sudo chown -R "$username:$username" "/home/$username/.config" "/home/$username/.fonts" "/home/$username/Pictures"
 
 #Nala
 sudo nala fetch
@@ -268,7 +283,7 @@ unzip FiraCode.zip -d "/home/$username/.fonts"
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip
 unzip Meslo.zip -d "/home/$username/.fonts"
 mv dotfonts/fontawesome/otfs/*.otf "/home/$username/.fonts/"
-chown "$username:$username" "/home/$username/.fonts/*"
+sudo chown -R "$username:$username" "/home/$username/.fonts"
 sudo nala install fonts-crosextra-carlito fonts-crosextra-caladea -y
 
 # Reloading Font cache
@@ -290,11 +305,15 @@ cd Layan-cursors || exit
 chmod +x ./install.sh
 sudo ./install.sh
 cd "$builddir" || exit
-rm -Layan-cursors 
+rm -rf Layan-cursors
 
 # Download Nordic Theme
 cd /usr/share/themes/ || exit
-sudo git clone https://github.com/EliverLara/Nordic.git
+if [ ! -d /usr/share/themes/Nordic ]; then
+    sudo git clone https://github.com/EliverLara/Nordic.git
+else
+    echo "✅ Nordic theme is already installed."
+fi
 
 #Enable Backports
 sudo add-apt-repository \
@@ -307,14 +326,13 @@ sudo apt install -t trixie-backports linux-image-amd64 linux-headers-amd64
 #SoH
 cd "$builddir" || exit
 wget https://github.com/HarbourMasters/Shipwright/releases/download/9.1.2/SoH-Copper-Charlie-Linux.zip
-tar -xfv SoH-Copper-Charlie-Linux.zip
+unzip -o SoH-Copper-Charlie-Linux.zip
 wget https://github.com/HarbourMasters/2ship2harkinian/releases/download/4.0.2/2Ship-Keiichi-Charlie-Linux.zip
-tar -xfv 2Ship-Keiichi-Charlie-Linux.zip
+unzip -o 2Ship-Keiichi-Charlie-Linux.zip
 #wget https://evilgames.eu/files/texture-packs/oot-reloaded-v11.0.0-dolphin-dds-hd.7z
 #wget https://evilgames.eu/files/texture-packs/oot-reloaded-v11.0.0-dolphin-dds-4k.7z
 wget https://github.com/GhostlyDark/MM-Reloaded-2S2H/releases/download/v11.0.3/mm-reloaded-v11.0.3-2ship-o2r-hd.7z
 wget https://github.com/DavidoTek/ProtonUp-Qt/releases/download/v2.15.1/ProtonUp-Qt-2.15.1-x86_64.AppImage
-wget 
 #___________________________________
 #Flatpaks
 
@@ -387,8 +405,8 @@ flatpak install -y flathub net.nokyan.Resources
 #_______________________________________________________________________#
 
 #sudo systemctl status libvirtd.service
-sudo adduser $User libvirt
-sudo adduser $User libvirt-qemu
+sudo adduser "$username" libvirt
+sudo adduser "$username" libvirt-qemu
 sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | sudo sh /dev/stdin
 
 
@@ -415,20 +433,24 @@ cd "$builddir"
 sudo apt install ttf-mscorefonts-installer -y
 #wget http://ftp.de.debian.org/debian/pool/contrib/m/msttcorefonts/ttf-mscorefonts-installer_3.8.1_all.deb
 #sudo dpkg -i ttf-mscorefonts-installer_3.8.1_all.deb
-wget http://plasmasturm.org/dl/vistafonts-... | bash #VistaFonts
+# Microsoft Vista / ClearType fonts (Calibri, Cambria, Candara, Consolas, Constantia, Corbel)
+# The installer downloads the original PowerPoint Viewer package from the Internet Archive.
+VISTA_FONT_INSTALLER="/tmp/vista-fonts-installer.sh"
+if curl -fL --retry 3 -o "$VISTA_FONT_INSTALLER" \
+    https://raw.githubusercontent.com/metanorma/vista-fonts-installer/master/vista-fonts-installer.sh; then
+    chmod +x "$VISTA_FONT_INSTALLER"
+    echo "🔤 Starting Microsoft Vista fonts installer..."
+    echo "ℹ️ The installer may ask you to accept Microsoft's font EULA."
+    sudo "$VISTA_FONT_INSTALLER"
+    sudo fc-cache -f -v
+    rm -f "$VISTA_FONT_INSTALLER"
+    echo "✅ Microsoft Vista fonts installation finished."
+else
+    echo "⚠️ Could not download the Microsoft Vista fonts installer."
+fi
 
-#sudo systemctl status libvirtd.service
-sudo adduser $User libvirt
-sudo adduser $User libvirt-qemu
-sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | sudo sh /dev/stdin
-
-# Download Nordic Theme
-cd /usr/share/themes/
-sudo git clone https://github.com/EliverLara/Nordic.git
-
-#Multilib support
-sudo dpkg --add-architecture i386 && sudo apt update
-sudo apt install \
+# Multilib architecture is enabled earlier in the graphics section.
+sudo apt install -y \
       wine \
       wine32 \
       wine64 \
@@ -439,7 +461,7 @@ sudo apt install \
 #sudo apt install steam -y (Black Window CSGO)
 sudo nala install -y build-essential dkms linux-headers-amd64
 sudo nala install -y mesa-vulkan-drivers libglx-mesa0:i386 mesa-vulkan-drivers:i386 libgl1-mesa-dri:i386
-sudo nala install -y libxtst6:i386 libxrandr2:i386 libglib2.0-0:i386 libgtk2.0-0:i386 libpulse0:i386 libgdk-pixbuf2.0-0:i386 libcurl4-openssl-dev:i386 libopenal1:i386 libusb-1.0-0:i386 libdbus-glib-1-2:i386 
+sudo nala install -y libxtst6:i386 libxrandr2:i386 libglib2.0-0t64:i386 libgtk2.0-0t64:i386 libpulse0:i386 libgdk-pixbuf-2.0-0:i386 libcurl4-openssl-dev:i386 libopenal1:i386 libusb-1.0-0:i386 libdbus-glib-1-2:i386 
 sudo nala install -y linux-headers-$(uname -r)
 sudo apt purge -y firefox-esr
 sudo apt purge -y konqueror
