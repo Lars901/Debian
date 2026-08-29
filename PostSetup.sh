@@ -118,39 +118,108 @@ for PKG in "${PKGS[@]}"; do
     sudo apt -y install "$PKG"
 done
 
-# Graphics Drivers find and install
-if lspci | grep -Ei "nvidia|geforce" > /dev/null; then
-    echo "🎮 Nvidia-skjermkort oppdaget. Installerer drivere..."
+# ============================================
+# Graphics Drivers and Firmware
+# ============================================
 
-    # Legg til støtte for 32-bit pakker (nødvendig for Steam/Proton)
-    sudo dpkg --add-architecture i386
-    sudo apt update
+echo "🔍 Detecting graphics hardware..."
 
-    # Installer selve driveren, kontrollpanel og 32-bit biblioteker
-    sudo apt install -y nvidia-driver nvidia-smi nvidia-settings libgl1-nvidia-glvnd-glx:i386
+GPU_FOUND=false
 
-    echo "✅ Nvidia-drivere er installert. Ikke kjør nvidia-xconfig på en hybrid-bærbar!"
-else
-    echo "⏭️ Ingen Nvidia-maskinvare funnet. Hopper over driverinstallasjon."
-fi
-elif lspci | grep -E "Radeon"; then
-    sudo apt install firmware-amd-graphics mesa-vulkan-drivers xserver-xorg-video-amdgpu
-elif lspci | grep -E "Integrated Graphics Controller"; then
-    sudo apt -y install libva-intel-driver libvdpau-va-gl lib32-vulkan-intel vulkan-intel libva-intel-driver libva-utils --needed --noconfirm
+if lspci | grep -Eqi 'VGA|3D|Display'; then
+    GPU_FOUND=true
 fi
 
-# Sjekk om maskinen er produsert av ASUS
-if grep -qi "asus" /sys/class/dmi/id/sys_vendor; then
-    echo "🎯 Detekterte en ASUS-maskin. Installerer supergfxctl..."
-    
-    # Kjører installasjonen
+# Enable 32-bit architecture once.
+# This is useful for Steam, Proton and 32-bit graphics libraries.
+if [ "$GPU_FOUND" = true ]; then
+    if ! dpkg --print-foreign-architectures | grep -qx i386; then
+        echo "➕ Enabling i386 architecture..."
+        sudo dpkg --add-architecture i386
+        NEED_APT_UPDATE=true
+    fi
+fi
+
+# Run apt update once if i386 was added.
+if [ "${NEED_APT_UPDATE:-false}" = true ]; then
+    echo "🔄 Updating package lists..."
     sudo apt update
-    sudo apt install -y supergfxctl
-    
-    # Aktiverer bakgrunnstjenesten med en gang
-    sudo systemctl enable --now supergfxd
-else
-    echo "⏭️ Ikke en ASUS-maskin (Produsent: $(cat /sys/class/dmi/id/sys_vendor)). Hopper over supergfxctl."
+fi
+
+
+# ============================================
+# AMD Graphics
+# ============================================
+
+if lspci | grep -Eqi 'AMD.*(VGA|3D|Display)|ATI.*(VGA|3D|Display)|Radeon'; then
+    echo "🎮 AMD graphics detected."
+    echo "📦 Installing AMD graphics drivers, firmware and Vulkan support..."
+
+    sudo apt install -y \
+        firmware-amd-graphics \
+        mesa-vulkan-drivers \
+        mesa-vulkan-drivers:i386 \
+        mesa-va-drivers \
+        mesa-va-drivers:i386 \
+        xserver-xorg-video-amdgpu
+
+    echo "✅ AMD graphics support installed."
+fi
+
+
+# ============================================
+# NVIDIA Graphics
+# ============================================
+
+if lspci | grep -Eqi 'NVIDIA|GeForce'; then
+    echo "🎮 NVIDIA graphics detected."
+
+    if dpkg-query -W -f='${Status}' nvidia-driver 2>/dev/null | grep -q "ok installed"; then
+        echo "✅ NVIDIA driver is already installed."
+    else
+        echo "📦 Installing NVIDIA proprietary driver and 32-bit libraries..."
+
+        sudo apt install -y \
+            nvidia-driver \
+            nvidia-smi \
+            nvidia-settings \
+            nvidia-driver-libs:i386
+
+        echo "✅ NVIDIA driver installed."
+        echo "ℹ️ Do not run nvidia-xconfig on hybrid graphics laptops."
+    fi
+fi
+
+
+# ============================================
+# Intel Graphics
+# ============================================
+
+if lspci | grep -Eqi 'Intel.*(VGA|3D|Display)'; then
+    echo "🎮 Intel graphics detected."
+    echo "📦 Installing Intel graphics firmware, Vulkan and VA-API support..."
+
+    sudo apt install -y \
+        firmware-intel-graphics \
+        mesa-vulkan-drivers \
+        mesa-vulkan-drivers:i386 \
+        mesa-va-drivers \
+        mesa-va-drivers:i386 \
+        intel-media-va-driver \
+        libva-utils
+
+    echo "✅ Intel graphics support installed."
+fi
+
+
+# ============================================
+# No Supported GPU Detected
+# ============================================
+
+if ! lspci | grep -Eqi \
+    'AMD.*(VGA|3D|Display)|ATI.*(VGA|3D|Display)|Radeon|NVIDIA|GeForce|Intel.*(VGA|3D|Display)'; then
+
+    echo "⏭️ No supported AMD, NVIDIA or Intel graphics hardware detected."
 fi
 
 #Enable Dvd playback
