@@ -77,10 +77,8 @@ PKGS=(
 'ntpdate'
 'obs-studio'
 'okular'
-'openjdk-21-jdk' # Java 21
-'openjdk-21-jre' #Java 21 jre
-'openjdk-25-jdk' # Java 25
-'openjdk-25-jre' #Java 25 jre
+'openjdk-21-jre' # Java 21 Runtime
+'openjdk-25-jre' # Java 25 Runtime
 'os-prober'
 'p7zip'
 'patch'
@@ -117,6 +115,19 @@ for PKG in "${PKGS[@]}"; do
     echo "INSTALLING: ${PKG}"
     sudo apt -y install "$PKG"
 done
+
+# ============================================
+# Set Java 25 as default
+# ============================================
+
+if [ -x /usr/lib/jvm/java-25-openjdk-amd64/bin/java ]; then
+    echo "☕ Setting Java 25 as the default Java runtime..."
+    sudo update-alternatives --set java /usr/lib/jvm/java-25-openjdk-amd64/bin/java
+    echo "✅ Default Java version:"
+    java -version
+else
+    echo "⚠️ Java 25 runtime was not found."
+fi
 
 # ============================================
 # Graphics Drivers and Firmware
