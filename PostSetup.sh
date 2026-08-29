@@ -1,13 +1,57 @@
 #!/usr/bin/env bash
+
 username=$(id -u -n 1000)
 builddir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-# Change Debian to SID Branch
-#sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak
-#sudo cp sources.list /etc/apt/sources.list 
+# ============================================
+# Enable Debian repository components
+# ============================================
+
+echo "🔧 Checking Debian repository components..."
+
+DEBIAN_SOURCES="/etc/apt/sources.list.d/debian.sources"
+LEGACY_SOURCES="/etc/apt/sources.list"
+
+if [ -f "$DEBIAN_SOURCES" ]; then
+    echo "📦 Debian deb822 sources file detected."
+
+    # Create a backup before making changes.
+    sudo cp -n "$DEBIAN_SOURCES" "${DEBIAN_SOURCES}.backup"
+
+    # Enable all Debian repository components.
+    sudo sed -i \
+        's/^Components:.*/Components: main contrib non-free non-free-firmware/' \
+        "$DEBIAN_SOURCES"
+
+    echo "✅ Enabled: main contrib non-free non-free-firmware"
+
+elif [ -f "$LEGACY_SOURCES" ]; then
+    echo "📦 Traditional Debian sources.list detected."
+
+    # Create a backup before making changes.
+    sudo cp -n "$LEGACY_SOURCES" "${LEGACY_SOURCES}.backup"
+
+    # Add missing repository components to active Debian lines.
+    for component in main contrib non-free non-free-firmware; do
+        sudo sed -i -E \
+            "/^[[:space:]]*deb(-src)?[[:space:]].*debian/ {
+                /(^|[[:space:]])${component}([[:space:]]|$)/! s/[[:space:]]*$/${component:+ }${component}/
+            }" \
+            "$LEGACY_SOURCES"
+    done
+
+    echo "✅ Enabled: main contrib non-free non-free-firmware"
+
+else
+    echo "⚠️ No Debian sources file was found."
+fi
+
+# Update package lists after repository configuration.
+echo "🔄 Updating package lists..."
 sudo apt update -y
 
 PKGS=(
+    '7zip' # 7-Zip archive utility
     'alsa-utils' # ALSA audio utilities
     'ark' # KDE archive manager
     'autoconf' # Build configuration tools
@@ -59,8 +103,8 @@ PKGS=(
     'libtool' # Generic library support tools
     'libvirglrenderer1' # VirGL virtual GPU rendering library
     'libvirt-clients' # libvirt command-line tools
-    'libvirt-daemon' # libvirt virtualization daemon
     'libvirt-daemon-system' # libvirt system service and configuration
+    'libvirt-daemon' # libvirt virtualization daemon
     'libx11-dev' # X11 development files
     'libxext-dev' # X11 extension development files
     'lsof' # List open files
@@ -78,43 +122,39 @@ PKGS=(
     'openjdk-21-jre' # Java 21 runtime
     'openjdk-25-jre' # Java 25 runtime
     'os-prober' # Detect other operating systems
-    '7zip' # 7-Zip archive utility
+    'ovmf' # UEFI and Secure Boot firmware for x86-64 virtual machines
     'patch' # Apply source code patches
     'pkgconf' # Package compiler/linker metadata tool
     'print-manager' # KDE printer management
     'python3-pip' # Python package installer
-
-    # QEMU / KVM virtualization
     'qemu-system-x86' # QEMU x86/x86-64 system emulator with KVM support
     'qemu-utils' # QEMU disk image tools such as qemu-img
-    'ovmf' # UEFI and Secure Boot firmware for x86-64 virtual machines
-    'swtpm' # Software TPM emulator
-    'swtpm-tools' # Utilities for configuring virtual TPM devices
-    'virtiofsd' # Fast host directory sharing with virtual machines
-    'virgl-server' # VirGL vtest server
-    'virt-manager' # Graphical virtual machine manager
-    'virt-viewer' # Graphical virtual machine console
-    'virtinst' # Command-line virtual machine creation tools
-
     'qt-style-kvantum' # Kvantum Qt theme engine
     'qtbase5-dev' # Qt 5 base development files
     'qttools5-dev-tools' # Qt 5 development tools
     'rsync' # File synchronization utility
     'snapper' # Filesystem snapshot management
     'software-properties-common' # Repository management utilities
+    'swtpm-tools' # Utilities for configuring virtual TPM devices
+    'swtpm' # Software TPM emulator
     'systemsettings' # KDE System Settings
     'telegram-desktop' # Telegram desktop client
     'traceroute' # Network route diagnostic tool
     'ufw' # Uncomplicated Firewall
+    'unattended-upgrades'
     'unrar' # RAR archive extraction
     'unzip' # ZIP archive extraction
     'usbutils' # USB device utilities
+    'virgl-server' # VirGL vtest server
+    'virt-manager' # Graphical virtual machine manager
+    'virt-viewer' # Graphical virtual machine console
+    'virtinst' # Command-line virtual machine creation tools
+    'virtiofsd' # Fast host directory sharing with virtual machines
     'vulkan-tools' # Vulkan diagnostic utilities
     'wget' # Command-line download utility
     'wireless-regdb' # Wireless regulatory database
     'zip' # ZIP archive creation
-
-    #'kde-baseapps'
+    # QEMU / KVM virtualization
     #'lutris'
 )
 
@@ -274,6 +314,18 @@ sudo chown -R "$username:$username" "/home/$username/.config" "/home/$username/.
 
 #Nala
 sudo nala fetch
+# Enable all Debian repository components in the sources created by Nala.
+if [ -f /etc/apt/sources.list.d/fetch.sources ]; then
+    echo "🔧 Enabling all Debian repository components in Nala sources..."
+
+    sudo sed -i \
+        's/^Components:.*/Components: main contrib non-free non-free-firmware/' \
+        /etc/apt/sources.list.d/fetch.sources
+
+    echo "✅ Enabled: main contrib non-free non-free-firmware"
+fi
+
+sudo apt update -y
 # Installing fonts
 cd "$builddir" || exit
 git clone https://github.com/SpudGunMan/segoe-ui-linux
@@ -474,6 +526,20 @@ sudo update-alternatives --config editor
 flatpak install -y flathub com.valvesoftware.Steam
 
 #Fix time when dualbooting with Windows 10+
-sudo timedatectl set-local-rtc 1
+# Detect Windows dual boot before using a local-time RTC.
+# os-prober is installed earlier in this script.
+if command -v os-prober >/dev/null 2>&1; then
+    echo "🔍 Checking for an existing Windows installation..."
+
+    if sudo os-prober 2>/dev/null | grep -qiE 'Windows|Windows Boot Manager'; then
+        echo "🪟 Windows installation detected."
+        echo "🕒 Configuring the hardware clock (RTC) to use local time for dual boot."
+        sudo timedatectl set-local-rtc 1 --adjust-system-clock
+    else
+        echo "✅ No Windows installation detected. Leaving the RTC configuration unchanged."
+    fi
+else
+    echo "⚠️ os-prober is not available. Leaving the RTC configuration unchanged."
+fi
 #Unattended upgrades
 sudo dpkg-reconfigure unattended-upgrades
